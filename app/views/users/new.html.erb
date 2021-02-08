@@ -10,19 +10,37 @@
                         <%= f.text_field :name, class: 'form-control' %>
                     </div>
                     <div class = "form-group">
+                        <%= f.label '都道府県', class: 'text-black' %>
+                        <%= f.select :prefectures, User.prefectures.keys, {}, class: 'select-form' %>
+                    </div>
+                    <div class = "form-group">
                         <%= f.label 'メールアドレス', class: 'text-black' %>
                         <%= f.text_field :email, class: 'form-control' %>
                     </div>
                     <div class = "form-group">
                         <%= f.label 'パスワード', class: 'text-black' %>
+                        <br><%= f.label '(アルファベット大文字、小文字、数字を1つ以上含む、8文字以上20文字以下)', class: 'text-small' %>
                         <%= f.password_field :password, class: 'form-control' %>
                     </div>
                     <div class = "form-group">
                         <%= f.label 'パスワード確認', class: 'text-black' %>
                         <%= f.password_field :password_confirmation, class: 'form-control' %>
                     </div>
+                    <div class = "form-group">
+                        <%= f.label '作品を投稿しますか', class: `text-black` %>
+                        <div class = "radio-inline">
+                            <%= f.radio_button :artist, :yes %>
+                            <%= f.label 'はい', class: 'radio-label' %>
+                        </div>
+                        <div class = "radio-inline">
+                            <%= f.radio_button :artist, :no %>
+                            <%= f.label 'いいえ', class: 'radio-label' %>
+                        </div>
+                    </div>
                     
                     <%= f.submit "登録", class: 'btn-block btn-black' %>
+                    <%= link_to 'ログイン', login_path %>
+                    <%= link_to 'トップページ', root_path %>
                 <% end %>
             </div>
         </div>

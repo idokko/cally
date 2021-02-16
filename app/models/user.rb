@@ -13,6 +13,8 @@ class User < ApplicationRecord
             format: {with: VALID_PASSWORD_REGEX}
   validates :password, confirmation: true
   
+  has_many :works, dependent: :destroy
+  
   enum artist: {yes: 1, no: 2}
   enum prefectures: {
     "---": 0,

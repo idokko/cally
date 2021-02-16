@@ -5,8 +5,10 @@ class SessionsController < ApplicationController
   end
   
   def create
-    if @user = login(params[:name], params[:password])
-      redirect_back_or_to(login_path, success: 'ログインしました')
+    # binding.pry
+    if @user = login(params[:session][:email], params[:session][:password])
+    # if @user = login(params[:session][:email], params[:session][:password]) && User.params[:artist] == :yes
+      redirect_back_or_to works_path, success: 'ログインしました'
     else
       flash[:alert] = 'ログイン失敗'
       render :new

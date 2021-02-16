@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get 'works/new'
   get 'sessions/new'
   get 'users/new'
   get 'pages/index'
+  get 'lists/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'pages#index'
   
@@ -10,4 +12,5 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy', as: :logout
   
   resources :users
+  resources :works
 end

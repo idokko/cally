@@ -1,13 +1,13 @@
-<div class = user-new-erapper>
-    <div class = cntainer>
+<div class = user-new-wrapper>
+    <div class = container>
         <div class = row> 
             <div class = "col-md-offset-4 col-md-4 users-new-container">
                 <h1 class = "text-center text-block">ログイン</h1>
                 <%= form_for :session, url: login_path, local: true do |f| %>
                     
                     <div class = "form-group">
-                        <%= f.label :name, '名前', class: 'text-black' %>
-                        <%= f.text_field :name, class: 'form-control' %>
+                        <%= f.label :email, 'メールアドレス', class: 'text-black' %>
+                        <%= f.text_field :email, class: 'form-control' %>
                     </div>
                     
                     <div class = "form-group">
@@ -18,6 +18,7 @@
                     <%= f.submit "ログイン", class: 'btn-block btn-black' %>
                     <%= link_to '新規登録', new_user_path %>
                     <%= link_to 'トップページ', root_path %>
+                    <%= link_to '作品投稿', new_work_path %>
                 <% end %>
             </div>
         </div>

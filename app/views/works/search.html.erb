@@ -1,21 +1,12 @@
-<% if current_user.artist == "yes" %>
-    <p>
-        アーティストです
-    </p>
-<% else %>
-    <p>
-        アーティストではないです
-    </p>
-<% end %>
-
-<>
-<div class = "work-index-wrapper">
+<div class = "work-search-wrapper">
     <div class = "container">
         <h1 class = "text-center text-black">投稿した作品</h1>
         <div class = "list">
-            <%= form_with url: works_path, method: :get, local: true do |form| %>
-                <%= form.select("type_id", Type.pluck(:work_type, :id), {include_blank: true}) %>
-                <%= form.submit '検索', name: nil %>
+            <% @type_list.each do |list| %>
+                <span>
+                    <%= link_to list.work_type, type_works_path(type_id: type.id) %>
+                    <%= list.works.count %>
+                </span>
             <% end %>
         </div>
             <div class = "row">
@@ -40,9 +31,10 @@
                         </p>
                     </div>
                 </div>
-            <% end %>
+                <% end %>
+            </div>
+            <%= link_to 'トップページ', root_path %>
+            <%= link_to '投稿画面', works_new_path %>
         </div>
-        <%= link_to 'トップページ', root_path %>
-        <%= link_to '投稿画面', works_new_path %>
     </div>
 </div>

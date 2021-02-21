@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   
   get '/login', to: 'sessions#new', as: :login
   post '/login', to: 'sessions#create'
-  delete 'logout', to: 'sessions#destroy', as: :logout
+  post 'logout', to: 'sessions#destroy', as: :logout
   
   resources :users
   resources :works do
     get 'works', to: 'works#search'
+  end
+  
+  namespace :admin do
+    resources :users, only: [:index]
   end
 end

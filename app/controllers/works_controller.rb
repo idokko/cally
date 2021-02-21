@@ -1,7 +1,16 @@
 class WorksController < ApplicationController
+  before_action :logged_in_user, only: [:index, :new, :create, :destroy, :show, :search]
+  
+  def logged_in_user
+    unless logged_in?
+      # store_location
+      flash[:danger] = "ログインしてください"
+      redirect_to login_path
+    end
+  end
+  
   def index
     @works = Work.all
-    # binding.pry
     
     @works = @works.joins(:types).where(types: {id: params[:type_id]}) if params[:type_id].present?
     # @type_list = Type.all

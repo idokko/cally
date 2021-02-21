@@ -1,13 +1,17 @@
 <div class = "top-wrapper text-center">
     <div class = "container top-container">
         <h1 class = "text-black">Callyへようこそ！！</h1>
-        <h2 class = "text-vlack">あなたにピッタリな「書」を見つけよう！</h2>
+        <h2 class = "text-black">あなたにピッタリな「書」を見つけよう！</h2>
         <div class = "row">
             <div class = "col-md-offset-3 col-md-6">
                 <%= link_to '新規登録', new_user_path, class: 'btn btn-block btn-black' %>
             </div>
             <div class = "col-md-offset-3 col-md-6">
                 <%= link_to 'ログイン', login_path, class: 'btn btn-block btn-black' %>
+            </div>
+            
+            <div class = "col-md-offset-3 col-md-6">
+            <%= link_to 'ログアウト', logout_path, method: :post %>            
             </div>
         </div>
     </div>

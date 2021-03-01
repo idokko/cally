@@ -5,6 +5,10 @@ class Admin::UsersController < ApplicationController
        @users = User.all.order(created_at: :desc) 
     end
     
+    def show
+        
+    end
+    
     private
     def admin_user
         redirect_to (root_path) unless current_user.admin? 

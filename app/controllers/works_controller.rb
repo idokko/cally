@@ -3,7 +3,6 @@ class WorksController < ApplicationController
   
   def logged_in_user
     unless logged_in?
-      # store_location
       flash[:danger] = "ログインしてください"
       redirect_to login_path
     end
@@ -13,13 +12,10 @@ class WorksController < ApplicationController
     @works = Work.all
     
     @works = @works.joins(:types).where(types: {id: params[:type_id]}) if params[:type_id].present?
-    # @type_list = Type.all
-    # @work = current_user.works.new
   end
   
   def new
     @work = Work.new
-    # @work.work_type_relations.build
   end
 
   def create

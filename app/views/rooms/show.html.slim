@@ -1,0 +1,12 @@
+h1
+    | メッセージ
+    
+form id = "content_form"
+    input type = "text" id = "content"
+    input type = "file" id = "image"
+    
+/render @messageほパーシャル用ファイルの
+/_message.html.erbに展開される
+/パーシャル:他のviewファイルから呼び出して利用することができる
+#messages
+    = render @messages

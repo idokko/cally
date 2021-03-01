@@ -1,0 +1,13 @@
+<h1>
+メッセージ
+
+</h1><form id="content_form">
+<input id="content" type="text" />
+<input id="image" type="file" />
+
+</form>
+
+
+<div id="messages">
+<%= ::Temple::Utils.escape_html((render @messages)) %>
+</div>

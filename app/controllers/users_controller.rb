@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
-  # skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :require_login, only: [:new, :create]
   def new
     @user = User.new
   end
   
   def create
-    # @user = User.new(name: params[:user][:name], email: params[:user][:email])
     @user = User.new(user_params)
     if @user.save
       redirect_to root_path, success: '登録が完了しました'
@@ -13,6 +12,11 @@ class UsersController < ApplicationController
       flash.now[:danger] = "登録に失敗しました"
       render :new
     end
+  end
+  
+  def show
+    @user_name = current_user.name
+    @works = current_user.works
   end
   
   private

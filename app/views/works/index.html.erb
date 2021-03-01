@@ -1,3 +1,4 @@
+
 <% if current_user.artist == "yes" %>
     <p>
         アーティストです
@@ -10,7 +11,7 @@
 
 <div class = "work-index-wrapper">
     <div class = "container">
-        <h1 class = "text-center text-black">投稿した作品</h1>
+        <h1 class = "text-center text-black">作品一覧</h1>
         <div class = "list">
             <%= form_with url: works_path, method: :get, local: true do |form| %>
                 <%= form.select("type_id", Type.pluck(:work_type, :id), {include_blank: true}) %>
@@ -39,9 +40,10 @@
                         </p>
                     </div>
                 </div>
-            <% end %>
-        </div>
+                <% end %>
+            </div>
         <%= link_to 'トップページ', root_path %>
         <%= link_to '投稿画面', works_new_path %>
+        <%= link_to '自分の作品', users_show_path %>
     </div>
 </div>

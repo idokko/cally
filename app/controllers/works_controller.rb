@@ -20,6 +20,7 @@ class WorksController < ApplicationController
 
   def create
     @work = current_user.works.new(work_params)
+    binding.pry
     type_list = params[:work_type].split(",")
     if @work.save
       redirect_to works_path, success: '投稿しました'

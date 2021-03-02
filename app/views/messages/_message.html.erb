@@ -1,6 +1,0 @@
-<div class="message">
-<p>
-<%= ::Temple::Utils.escape_html((message.content)) %>
-<% if message.image?
- %><%= ::Temple::Utils.escape_html((image_tag message.image.url)) %>
-<% end %></p></div>

@@ -1,20 +1,15 @@
 class RoomChannel < ApplicationCable::Channel
-  # skip_before_action :require_login, only: [:speak, :subscribed]
+  # 接続された時
   def subscribed
-    stream_from "room_channel"
+    stream_from "room_channel_#{params['room']}"
   end
 
+  # 切断された時
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
 
-  #app/assets/javascripts/channels/room.coffeeで定義した
-  #speak関数によって、下記のspeakアクションが呼ばれる
-  def speak(data)
-    message = Message.new(
-              content: data['content'],
-              image_data_uri: data['data_uri']
-              )
-    message.save
+  def speak
+    DirectMessage.create! content: data['direct_message'], user_id: current_user.id, room_id: params['room']
   end
 end

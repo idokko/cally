@@ -20,6 +20,7 @@ document.addEventListener 'turbolinks: load', ->
   $('#chat-input').on 'keypress', (event) ->
     # rreturnキーが押されたら
     if event.KeyCode is 13
+      # console.log("ここまで来た")
       # speakメソッド, event.target.valueを引数にする
       App.room.speak event.target.value
       event.target.value = ''

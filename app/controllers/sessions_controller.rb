@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   
   def create
     if @user = login(params[:session][:email], params[:session][:password]) && current_user.artist == "yes"
-      redirect_back_or_to users_show_path, success: 'ログインしました'
+      redirect_back_or_to user_path(current_user.id) , success: 'ログインしました'
     elsif
       @user = login(params[:session][:email], params[:session][:password]) && current_user.artist == "no"
       redirect_back_or_to works_path, success: 'ログインしました'

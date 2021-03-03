@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   post 'logout', to: 'sessions#destroy', as: :logout
   
-  resources :users
+  resources :users, only: [:index, :create, :new]
+  resources :users, path: '/', only: [:show, :edit, :uodate, :destroy]
   resources :rooms
   resources :works do
     get 'works', to: 'works#search'

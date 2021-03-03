@@ -5,15 +5,15 @@
             <% if @is_room == true %>
                 <!-- メールアイコンでroomに飛べるようにする -->
                 <%= link_to room_path(@room_id) do %>
-                    <button id = "dm_submit"><i class = "fas fa-envelope"></i></button>
+                    <button id = "dm_submit">room</button>
                 <% end %>
             <% else %>
                 <!-- roomが存在していなければroomを作成する -->
-                <%= form_with @room, url: rooms_path do |f| %>
+                <%= form_with url: rooms_path, method: :post do |f| %>
                     <%= fields_for @entry do |e| %>
                         <%= e.hidden_field :user_id, :value => @user_id.id %>
                     <% end %>
-                    <button type = "sbumit" id = "dm_submit"><i class = "fas fa-envelope"></i></button>
+                    <button type = "sbumit" id = "dm_submit">room</button>
                 <% end %>
             <% end %>
         <% end %>

@@ -22,7 +22,7 @@ class RoomsController < ApplicationController
        end
     end
     
-    def creat
+    def create
         @room = Room.create(:name => "DM")
         # entryにログインユーザーを作成
         @entry1 = Entry.create(:room_id => @room.id, :user_id => current_user.id)

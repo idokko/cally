@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
+  before_action :set_user, only: [:show]
   def new
     @user = User.new
   end
@@ -15,7 +16,6 @@ class UsersController < ApplicationController
   end
   
   def show
-    binding.pry
     @user_id = User.find(params[:id])
     # チャット
     # Entry内のuser_idがcurrent_userと同じEntry
@@ -43,6 +43,10 @@ class UsersController < ApplicationController
     # 自分の作品一覧
     @user_name = current_user.name
     @works = current_user.works
+  end
+  
+  def set_user
+    @user = User.find_by(name: params[:id])
   end
   
   private

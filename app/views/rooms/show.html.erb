@@ -1,7 +1,7 @@
 <% @entries.each do |e| %>
     <!-- eachで回したentryユーザーがログインユーザーでなければ、@classに"current_userの文字列を代入する" -->
     <!-- ログインユーザーであれば、空白を代入する -->
-    <% current_user == e.user? @class = "current_user" : @class = "" %>
+    <% current_user == e.user ? @class = "current_user" : @class = "" %>
     <!-- eachで回したentryユーザーがログインユーザーでなければ、entryユーザー名も表示する -->
     <% if e.user != current_user %>
         <h5 class = "text-left <%= @class %>" id = "<%= @class %>" style = "font-size: 30px;" data-id = "<%= e.user.id %>">
@@ -21,7 +21,7 @@
 <!-- メッセージフォーム -->
 <form>
     <label style = "color: white;" id = "target">新しいメッセージを作成</label>
-    <label type = " text" id = "chat-input" data-behavior = "room_speaker" class = "form-controlS" >
+    <input type = " text" id = "chat-input" data-behavior = "room_speaker" class = "form-controlS" >
 </form>
 
 <script>

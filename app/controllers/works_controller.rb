@@ -23,8 +23,8 @@ class WorksController < ApplicationController
     # binding.pry
     # type_list = params[:work_type].split(",")
     if @work.save
-      redirect_to works_path, success: '投稿しました'
-      @work.save
+      redirect_to user_path(current_user.id), success: '投稿しました' and return
+      # @work.save
     else
       flash.now[:danger] = '投稿できませんでした'
       render :new

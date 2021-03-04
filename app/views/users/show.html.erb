@@ -1,5 +1,6 @@
 <div class = "work-index-wrapper">
     <div class = "container">
+        <h2>current_user:<%= current_user.name %></h2>
         <% unless @user_id.id == current_user.id %>
             <!-- メールアイコンでroomに飛べるようにする -->
             <% if @is_room == true %>
@@ -17,37 +18,40 @@
                 <% end %>
             <% end %>
         <% end %>
-        
-        <h1 class = "text-center text-black"><%= @user_name %>さんの投稿一覧</h1>
-        <div class = "list">
-            <%= form_with url: works_path, method: :get, local: true do |form| %>
-                <%= form.select("type_id", Type.pluck(:work_type, :id), {include_blank: true}) %>
-                <%= form.submit '検索', name: nil %>
-            <% end %>
-        </div>
-        <div class = "row">
-            <% @works.each do |work| %>
-            <div class = "col-md-3">
-                <div class = "work-index-three">
-                    <%= image_tag work.image.url%>
-                    <p class = "work-title">
-                        <%= work.title %>
-                    </p>
-                    </p>
-                    <p class = "work-text">
-                        <%= work.description %>
-                    </p>
-                    <p class = "artist">
-                        <%= work.user.name %>
-                    </p>
-                    <p>
-                        <% work.types.each  do |type| %>
-                        <%= type.work_type %>
-                        <% end %>
-                    </p>
-                </div>
+        <% if @user_id.artist == "yes" %>
+            <h1 class = "text-center text-black"><%= @user_id.name %>さんの投稿一覧</h1>
+            <div class = "list">
+                <%= form_with url: works_path, method: :get, local: true do |form| %>
+                    <%= form.select("type_id", Type.pluck(:work_type, :id), {include_blank: true}) %>
+                    <%= form.submit '検索', name: nil %>
+                <% end %>
             </div>
-            <% end %>
+            <div class = "row">
+                <% @works.each do |work| %>
+                <div class = "col-md-3">
+                    <div class = "work-index-three">
+                        <%= image_tag work.image.url%>
+                        <p class = "work-title">
+                            <%= work.title %>
+                        </p>
+                        </p>
+                        <p class = "work-text">
+                            <%= work.description %>
+                        </p>
+                        <p class = "artist">
+                            <%= work.user.name %>
+                        </p>
+                        <p>
+                            <% work.types.each  do |type| %>
+                            <%= type.work_type %>
+                            <% end %>
+                        </p>
+                    </div>
+                </div>
+                <% end %>
+        <% else %>
+            <h1 class = "text-center text-black"><%= @user_id.name %>さんのプロフィール</h1>
+        <% end %>
         </div>
         <%= link_to 'トップページ', root_path %>
         <%= link_to '投稿画面', works_new_path %>

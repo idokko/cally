@@ -12,6 +12,7 @@ class RoomsController < ApplicationController
     end
     
     def show
+        # binding.pry
        @room = Room.find(params[:id])
        #ルームが作成されているかどうか
        if Entry.where(:user_id => current_user.id, :room_id => @room.id).present?

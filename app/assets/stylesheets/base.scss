@@ -72,3 +72,33 @@ h1, h2 {
 img {
     width: 100%;
 }
+
+.navbar-transparent {
+    margin-bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
+    
+    .navbar-brand {
+        padding: 0px;
+        margin-top: 15px;
+    }
+    
+    img {
+        height: 40px;
+        width: 50px;
+        
+        &:hover {
+            opacity: 0.7;
+            transition-duration: 0.3s;
+        }
+    }
+    
+    .nav-text {
+        margin-top: 10px;
+        color: #fff !important;
+        
+        &:hover {
+            opacity: 0.7;
+            transition-duration: 0.3s;
+        }
+    }
+}

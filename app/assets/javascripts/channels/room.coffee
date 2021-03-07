@@ -1,7 +1,8 @@
 document.addEventListener 'turbolinks: load', ->
-  if App.room
-    App.cable.subscriptions.remove App.room
+  # if App.room
+  #   App.cable.subscriptions.remove App.room
   App.room = App.cable.subscriptions.create {channel: "RoomChannel", room: $('#direct_messages').data('room_id')},
+    # App.room = App.cable.subscriptions.create "RoomChannel"
     # 通信が確立された時
     connected: ->
       # Called when the subscription is ready for use on the server
@@ -13,13 +14,14 @@ document.addEventListener 'turbolinks: load', ->
       # Called when there's incoming data on the websocket for this channel
       # 投稿を追加
       $('#direct_messages').append data['direct_message']
+      alert(data)
     # サーバーサイドのspeakアクションにdirect_messageパラメータを渡す
     speak: (direct_message) ->
       @perform 'speak', direct_message: direct_message
       
-  $('#chat-input').on 'keypress', (event) ->
+  $('#chat-input').on 'keypress',(event) ->
     # rreturnキーが押されたら
-    if event.KeyCode is 13
+    if event.keyCode is 13
       # console.log("ここまで来た")
       # speakメソッド, event.target.valueを引数にする
       App.room.speak event.target.value

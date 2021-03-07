@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   post 'logout', to: 'sessions#destroy', as: :logout
   
-  resources :users, only: [:index, :create, :new]
-  resources :users, path: '/', only: [:show, :edit, :uodate, :destroy]
+  # resources :users, only: [:index, :create, :new]
+  # resources :users, path: '/', only: [:show, :edit, :uodate, :destroy]
+  resources :users
   resources :rooms
   resources :works do
     get 'works', to: 'works#search'
@@ -22,4 +23,6 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index]
   end
+  
+  mount ActionCable.server => '/cable'
 end

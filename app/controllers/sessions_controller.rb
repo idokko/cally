@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       @user = login(params[:session][:email], params[:session][:password]) && current_user.artist == "no"
       redirect_back_or_to works_path, success: 'ログインしました'
     else
-      flash[:alert] = 'ログイン失敗'
+      flash.now[:danger] = 'ログイン失敗'
       render :new
     end
   end

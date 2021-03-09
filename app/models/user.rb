@@ -3,14 +3,15 @@ class User < ApplicationRecord
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/
   VALID_PASSWORD_REGEX = /\A(?=[a-z,A-Z\d])[a-z,A-Z\d]{8,20}\z/
- 
+  
+# 　allow_blankはエラーメッセージ用
   validates :name, 
-            presence: true, length: {in: 1..15}
+            presence: true, length: {in: 1..15, allow_blank: true}
   validates :email,
-            presence: true, format: {with: VALID_EMAIL_REGEX}
+            uniqueness: true, presence: true, format: {with: VALID_EMAIL_REGEX, allow_blank: true}
   validates :password, :password_confirmation, 
             presence: true, 
-            format: {with: VALID_PASSWORD_REGEX}
+            format: {with: VALID_PASSWORD_REGEX, allow_blank: true}
   validates :password, confirmation: true
   
   has_many :works, dependent: :destroy

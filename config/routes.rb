@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # resources :users, path: '/', only: [:show, :edit, :uodate, :destroy]
   resources :users
   resources :rooms
+  resources :messages
   resources :works do
     get 'works', to: 'works#search'
   end

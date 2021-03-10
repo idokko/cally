@@ -15,10 +15,8 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   
   has_many :works, dependent: :destroy
-  has_many :messsges, dependent: :destroy
-  has_many :entries
-  has_many :direct_messages
-  has_many :rooms, through: :entries
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
   
   enum artist: {yes: 1, no: 2}
   enum prefectures: {

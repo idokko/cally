@@ -98,15 +98,17 @@ img {
 }
 
 .navbar-transparent {
-    margin-bottom: 0px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: #c0c0c0;
+    margin-top: -20px;
     
     .navbar-brand {
         padding: 0px;
-        margin-top: 15px;
+        margin-top: 25px;
     }
     
     img {
+        margin-top: 10px;
+        margin-bottom: -10px;
         height: 40px;
         width: 50px;
         
@@ -125,4 +127,24 @@ img {
             transition-duration: 0.3s;
         }
     }
+}
+
+.room-show-wrapper {
+    margin-top: 80px;
+}
+.message-right {
+    background-color: #66ccff;
+    display: inline-block;
+    margin-left: 50px;
+    padding: 7px;
+    text-align: left;
+    margin-bottom: -7px;
+}
+
+.message-left {
+    background-color: #ccff99;
+    display: inline-block;
+    margin-right: 50px;
+    padding: 7px;
+    margin-bottom: -7px;
 }

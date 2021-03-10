@@ -1,4 +1,5 @@
 ja:
+    # エラーに使用
     activerecord:
         models:
             user: ユーザー
@@ -8,3 +9,9 @@ ja:
                 email: メールアドレス
                 password: パスワード
                 password_confirmation: パスワード確認
+                
+    # 時刻に使用
+    time:
+        formats:
+            default: "%Y/%m/%d %H:%M:%S"
+            short: "%m/%d %H:%M"

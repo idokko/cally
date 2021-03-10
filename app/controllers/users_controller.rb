@@ -16,33 +16,32 @@ class UsersController < ApplicationController
   
   def show
     # binding.pry
-    @user_id = User.find(params[:id])
-    # チャット
-    # Entry内のuser_idがcurrent_userと同じEntry
-    @current_user_entry = Entry.where(user_id: current_user.id)
-    # Entry内のuser_idがMYPAGEのparams.idと同じEntry
-    @user_entry = Entry.where(user_id: @user_id.id)
-    # user_id.idとcurrent_user.idが同じでなければ
-    unless @user_id.id == current_user.id
-      @current_user_entry.each do |cu|
-        @user_entry.each do |u|
-          # もしcurrent_user側のルームidと@user側のルームidが同じであれば存在する
+    @user = User.find(params[:id])
+    # 自分が参加しているメッセージルームの情報を取得する
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    # 選択したユーザーのメッセージルームの情報を取得する
+    @userEntry = Entry.where(user_id: @user.id)
+    
+    # current_userと選択したユーザー間に共通のメッセージルームがあれば、フラグを立てる
+    unless @user.id == current_user.id
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
           if cu.room_id == u.room_id then
-            @is_room = true
-            @room_id = cu.room_id
+            @isRoom = true
+            @roomId = cu.room_id
           end
         end
       end
-      # ルームが存在してなければ、ルームとエントリーを作成する
-      unless @is_room
+      # 無ければ作成する
+      unless @isRoom
         @room = Room.new
         @entry = Entry.new
       end
     end
-    
+      
     # 自分の作品一覧
     @user_name = current_user.name
-    @works = @user_id.works
+    @works = @user.works
   end
   
   private

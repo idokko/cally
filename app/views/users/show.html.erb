@@ -1,25 +1,21 @@
-<div class = "work-index-wrapper">
+<div class = "user-show-wrapper">
     <div class = "container">
         <h2>current_user:<%= current_user.name %></h2>
-        <% unless @user_id.id == current_user.id %>
-            <!-- メールアイコンでroomに飛べるようにする -->
-            <% if @is_room == true %>
-                <!-- メールアイコンでroomに飛べるようにする -->
-                <%= link_to room_path(@room_id) do %>
-                    <button id = "dm_submit">room</button>
-                <% end %>
+        <% unless @user.id == current_user.id %>
+            <!--メッセージRoomが既にある場合はそこへのリンク(showアクション)-->
+            <% if @isRoom == true %>
+                <a href = "/rooms/<%= @roomId %>">メッセージを送る</a>
             <% else %>
-                <!-- roomが存在していなければroomを作成する -->
-                <%= form_with url: rooms_path, method: :post do |f| %>
+                <%= form_with model:@room, local: true do |f| %>
                     <%= fields_for @entry do |e| %>
-                        <%= e.hidden_field :user_id, :value => @user_id.id %>
+                        <%= e.hidden_field :user_id, :value=> @user.id %>
                     <% end %>
-                    <button type = "sbumit" id = "dm_submit">room</button>
+                    <%= f.submit "メッセージを始める", class: 'btn-outline-info' %>
                 <% end %>
             <% end %>
         <% end %>
-        <% if @user_id.artist == "yes" %>
-            <h1 class = "text-center text-black"><%= @user_id.name %>さんの投稿一覧</h1>
+        <% if @user.artist == "yes" %>
+            <h1 class = "text-center text-black"><%= @user.name %>さんの投稿一覧</h1>
             <div class = "list">
                 <%= form_with url: works_path, method: :get, local: true do |form| %>
                     <%= form.select("type_id", Type.pluck(:work_type, :id), {include_blank: true}) %>
@@ -50,7 +46,7 @@
                 </div>
                 <% end %>
         <% else %>
-            <h1 class = "text-center text-black"><%= @user_id.name %>さんのプロフィール</h1>
+            <h1 class = "text-center text-black"><%= @user.name %>さんのプロフィール</h1>
         <% end %>
         </div>
         <%= link_to 'トップページ', root_path %>

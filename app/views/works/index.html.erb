@@ -20,26 +20,28 @@
         </div>
             <div class = "row">
                 <% @works.each do |work| %>
-                <div class = "col-md-3">
-                    <div class = "work-index-three">
-                        <%= image_tag work.image.url%>
-                        <p class = "work-title">
-                            <%= work.title %>
-                        </p>
-                        </p>
-                        <p class = "work-text">
-                            <%= work.description %>
-                        </p>
-                        <p class = "artist">
-                            <%= work.user.name %>
-                        </p>
-                        <p>
-                            <% work.types.each  do |type| %>
-                            <%= type.work_type %>
-                            <% end %>
-                        </p>
+                    <div class = "col-md-3">
+                        <div class = "work-index-three">
+                            <div class = "line">
+                                <%= image_tag work.image.url%>
+                            </div>    
+                            <p class = "work-title">
+                                <%= work.title %>
+                            </p>
+                            </p>
+                            <p class = "work-text">
+                                <%= work.description %>
+                            </p>
+                            <p class = "artist">
+                                <%= work.user.name %>
+                            </p>
+                            <p>
+                                <% work.types.each  do |type| %>
+                                <%= type.work_type %>
+                                <% end %>
+                            </p>
+                        </div>
                     </div>
-                </div>
                 <% end %>
             </div>
         <%= link_to 'トップページ', root_path %>

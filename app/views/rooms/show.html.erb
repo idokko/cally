@@ -8,11 +8,7 @@
                     <h5>
                         <string>
                             <a href = "/users/<%= e.user.id %>">
-                                <% if e.user.name == current_user.name %>
-                                    <%= e.user.name %>
-                                <% else %>
-                                    <%= e.user.name %>
-                                <% end %>
+                                <%= e.user.name %>
                             </a>
                         </string>
                     </h5>
@@ -53,7 +49,7 @@
                 <% end %>
                 
                 <%= form_with model: @message, local: true do |f| %>
-                    <%= f.text_field :content, class: "form-control", :placeholder => "メッセージを入力してください"%>
+                    <%= f.text_area :content, class: "form-control", :placeholder => "メッセージを入力してください"%>
                     <%= f.hidden_field :room_id, :value => @room.id %>
                     <br>
                     <%= f.submit "送信する", class: "btn btn-info" %>

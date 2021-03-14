@@ -4,25 +4,24 @@
             <div class = "col-md-offset-3 col-md-6">
                 <h1 class = "text-center">メッセージ一覧</h1>
                 <hr>
-                    <% @anotherEntries.each do |entry| %>
-                        <h3>
-                            <strong>
-                                <a href = "/rooms/<%= entry.room.id %>">
-                                    <%= entry.user.name %>
-                                </a>
-                            </strong>
-                        </h3>
-                        <h5 class = "room-message">
-                            <% if entry.room.messages.present? %>
-                                <%= entry.room.messages.order(created_at: :desc).take.try(:content).truncate(30) %>
-                                <span class = "room-time">
-                                    <%= I18n.l(entry.room.messages.last.created_at, format: :short) %>
-                                </span>
-                            <% else %>
-                                メッセージがありません
-                            <% end %>
-                        </h5>
+                <div class = "dm_list">
+                    <% @rooms.each do |room| %>
+                        <div class = "dm_list_content">
+                            <%= link_to room_path(room), class: "dm_list_content_link" do %>
+                                <div class = "dm_list_content_link_box">
+                                    <h3 class = "dm.list_content_link_box_name">
+                                        <strong>
+                                            <%= opponent_user(room) %>
+                                        </strong>
+                                    </h3>
+                                <% end %>
+                                <p class = "dm.list_content_link_box_message">
+                                    <%= truncate_message(most_new_message_preview(room)) %>
+                                </p>
+                            </div>
+                        </div>
                     <% end %>
+                </div>
             </div>
         </div>
     </div>

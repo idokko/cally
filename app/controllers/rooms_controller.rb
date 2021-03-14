@@ -2,12 +2,7 @@ class RoomsController < ApplicationController
     before_action :require_login
     
     def index
-        @currentEntries = current_user.entries
-        myRoomIds = []
-        @currentEntries.each do |entry|
-           myRoomIds << entry.room_id
-        end
-        @anotherEntries = Entry.where(room_id: myRoomIds).where('user_id != ?', current_user.id)
+        @rooms = current_user.rooms.joins(:messages).includes(:messages).order("messages.created_at DESC")
     end
     
     def create

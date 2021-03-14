@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :works, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :rooms, through: :entries
   
   enum artist: {yes: 1, no: 2}
   enum prefectures: {

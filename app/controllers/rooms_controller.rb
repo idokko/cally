@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
     before_action :require_login
     
     def index
-        @rooms = current_user.rooms.joins(:messages).includes(:messages).order("messages.created_at DESC")
+        # @rooms = current_user.rooms.joins(:messages).includes(:messages).order("messages.created_at DESC")
         @currentEntries = current_user.entries
         myRoomIds = []
         

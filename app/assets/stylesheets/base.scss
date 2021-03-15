@@ -81,6 +81,12 @@ h1, h2 {
     font-size: 12px;
 }
 
+.user-show-wrapper {
+    img {
+        width: 100%;
+    }
+}
+
 .work-new-wrapper {
     width: 100vw;
     height: 100vh;
@@ -160,4 +166,8 @@ h1, h2 {
 
 .room-time {
     margin-left: 40px;
+}
+
+.m-circle {
+    color: red;
 }

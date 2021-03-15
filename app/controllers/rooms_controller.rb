@@ -3,6 +3,14 @@ class RoomsController < ApplicationController
     
     def index
         @rooms = current_user.rooms.joins(:messages).includes(:messages).order("messages.created_at DESC")
+        @currentEntries = current_user.entries
+        myRoomIds = []
+        
+        @currentEntries.each do |entry|
+           myRoomIds << entry.room.id 
+        end
+        
+        @anotherEntries = Entry.where(room_id: myRoomIds).where.not('user_id = ?', current_user.id)
     end
     
     def create
@@ -21,5 +29,7 @@ class RoomsController < ApplicationController
         else
             redirect_back(fallback_location: works_path)
         end
+        
+       
     end
 end

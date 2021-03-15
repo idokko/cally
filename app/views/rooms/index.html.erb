@@ -5,21 +5,18 @@
                 <h1 class = "text-center">メッセージ一覧</h1>
                 <hr>
                 <div class = "dm_list">
-                    <% @rooms.each do |room| %>
-                        <div class = "dm_list_content">
-                            <%= link_to room_path(room), class: "dm_list_content_link" do %>
-                                <div class = "dm_list_content_link_box">
-                                    <h3 class = "dm.list_content_link_box_name">
-                                        <strong>
-                                            <%= opponent_user(room) %>
-                                        </strong>
-                                    </h3>
-                                <% end %>
-                                <p class = "dm.list_content_link_box_message">
-                                    <%= truncate_message(most_new_message_preview(room)) %>
-                                </p>
-                            </div>
-                        </div>
+                    <% @anotherEntries.each do |e| %>
+                        <%= link_to room_path(e.room.id) do %>
+                        <h3 class = "dm-room-ids">
+                            <strong>
+                                <%= e.user.name %>
+                            </strong>
+                        </h3>
+                        <% end %>
+                        <h5 class = "dm-message">
+                            <% lastMessage = Message.where(id: e.room.message_ids.last).take.try(:content)%>
+                            <%= truncate(lastMessage, length: 30) %>
+                        </h5>
                     <% end %>
                 </div>
             </div>

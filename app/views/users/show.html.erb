@@ -1,6 +1,5 @@
 <div class = "user-show-wrapper">
     <div class = "container">
-        <h2>current_user:<%= current_user.name %></h2>
         <% unless @user.id == current_user.id %>
             <!--メッセージRoomが既にある場合はそこへのリンク(showアクション)-->
             <% if @isRoom == true %>

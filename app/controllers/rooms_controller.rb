@@ -27,6 +27,7 @@ class RoomsController < ApplicationController
             @message = Message.new
             @entries = @room.entries.includes(:user)
         else
+            
             redirect_back(fallback_location: works_path)
         end
         

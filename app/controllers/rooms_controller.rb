@@ -5,13 +5,14 @@ class RoomsController < ApplicationController
         # @rooms = current_user.rooms.joins(:messages).includes(:messages).order("messages.created_at DESC")
         @currentEntries = current_user.entries
         myRoomIds = []
-        
         @currentEntries.each do |entry|
            myRoomIds << entry.room.id 
         end
-        
         @anotherEntries = Entry.where(room_id: myRoomIds).where.not('user_id = ?', current_user.id)
+        
+        @notifications = current_user.passive_notifications
     end
+        
     
     def create
         @room = Room.create
@@ -21,14 +22,19 @@ class RoomsController < ApplicationController
     end
     
     def show
+        current_user.passive_notifications.where(action: 'dm', checked: false, room_id: params[:id]).each do |notification|
+                notification.update_attributes(checked: true)
+        end        
         @room = Room.find(params[:id])
         if Entry.where(:user_id => current_user.id, :room_id => @room.id).present?
             @messages = @room.messages.includes(:user)
             @message = Message.new
             @entries = @room.entries.includes(:user)
         else
-            
-            redirect_back(fallback_location: works_path)
+            if notification.checked == false
+                notification.update_attributes(checked: true)
+            end
+            redirect_back(fallback_location: rooms_path)
         end
         
        

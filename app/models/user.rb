@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   
+# def  has_unread_messages
+#   #current_userのメッセージがある場合
+#   unless self.rooms.room_ids.messages
+# end  
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/
   VALID_PASSWORD_REGEX = /\A(?=[a-z,A-Z\d])[a-z,A-Z\d]{8,20}\z/
   

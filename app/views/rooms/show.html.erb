@@ -5,6 +5,7 @@
                 <h1>メッセージ</h1>
                 <h4>参加者</h4>
                 <% @entries.each do |e| %>
+                <% message_count = Notification.where(action: 'dm', visited_id: current_user, visitor_id: e.user.id, checked: false).count %>
                     <h5>
                         <string>
                             <a href = "/users/<%= e.user.id %>">

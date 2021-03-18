@@ -9,8 +9,6 @@ class RoomsController < ApplicationController
            myRoomIds << entry.room.id 
         end
         @anotherEntries = Entry.where(room_id: myRoomIds).where.not('user_id = ?', current_user.id)
-        
-        @notifications = current_user.passive_notifications
     end
         
     
@@ -23,7 +21,7 @@ class RoomsController < ApplicationController
     
     def show
         current_user.passive_notifications.where(action: 'dm', checked: false, room_id: params[:id]).each do |notification|
-                notification.update_attributes(checked: true)
+            notification.update_attributes(checked: true)
         end        
         @room = Room.find(params[:id])
         if Entry.where(:user_id => current_user.id, :room_id => @room.id).present?

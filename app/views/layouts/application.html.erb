@@ -44,7 +44,12 @@
             </li>
             <li>
               <%= link_to rooms_path do %>
-                <%= image_tag "icons/メール.png" %>
+                <span class = "fa-stack fa-lg">
+                  <%= image_tag "icons/メール.png", class: "nav-mail" %>
+                  <% if checked_confirmation > 0%>
+                    <i class = "fa fa-circle nav-r-circle fa-stack-1x"></i>
+                  <% end %>
+                </span>
               <% end %>
             </li>
             <li>

@@ -2,13 +2,17 @@ class RoomsController < ApplicationController
     before_action :require_login
     
     def index
+        # @rooms = Room.where.not('user_id = ?', current_user.id).joins(:messages).includes(:messages).order("messages.created_at DESC")
         # @rooms = current_user.rooms.joins(:messages).includes(:messages).order("messages.created_at DESC")
         @currentEntries = current_user.entries
         myRoomIds = []
         @currentEntries.each do |entry|
-           myRoomIds << entry.room.id 
+           myRoomIds << entry.room.id
         end
-        @anotherEntries = Entry.where(room_id: myRoomIds).where.not('user_id = ?', current_user.id)
+        # @messages = Message.where(room_id: myRoomIds).where.not('user_id = ?', current_user.id).order(created_at: :desc)
+        # @rooms = Room.where(room_id: myRoomIds).where.not('user_id = ?', current_user.id).joins(:messages).merge(Message.order(created_at: :desc))
+        # binding.pry
+        @anotherEntries = Entry.where(room_id: myRoomIds).where.not('user_id = ?', current_user.id).order(updated_at: "DESC")
     end
         
     

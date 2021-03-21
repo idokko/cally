@@ -21,7 +21,7 @@
                         <% if m.user.name == current_user.name %>
                             <p class = "text-right">
                                 <span class = "message-right">
-                                    <%= m.content %>
+                                    <%= safe_join(m.content.split("\n"),tag(:br)) %>
                                 </span>
                             </p>
                             <p class = "text-right">
@@ -30,7 +30,7 @@
                         <% else %>
                             <p>
                                 <span class = "message-left">
-                                    <%= m.content%>
+                                    <%= safe_join(m.content.split("\n"),tag(:br)) %>
                                 </span>
                             </p>
                             <p>

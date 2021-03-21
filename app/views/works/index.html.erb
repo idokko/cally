@@ -8,7 +8,6 @@
         アーティストではないです
     </p>
 <% end %>
-
 <div class = "work-index-wrapper">
     <div class = "container">
         <h1 class = "text-center text-black">作品一覧</h1>
@@ -18,30 +17,31 @@
                 <%= form.submit '検索', name: nil %>
             <% end %>
         </div>
-            <div class = "row">
-                <% @works.each do |work| %>
-                    <div class = "col-md-3">
-                        <div class = "work-index-three">
+        <div class = "row">
+            <% @works.each do |work| %>
+                <div class = "col-xs-3 col-md-3">
+                    <div class = "work-index-three">
+                        <div class = "work-image">
                             <%= image_tag work.image.url%>
-                            <p class = "work-title">
-                                <%= work.title %>
-                            </p>
-                            </p>
-                            <p class = "work-text">
-                                <%= work.description %>
-                            </p>
-                            <p class = "artist">
-                                <%= work.user.name %>
-                            </p>
-                            <p>
-                                <% work.types.each  do |type| %>
-                                <%= type.work_type %>
-                                <% end %>
-                            </p>
                         </div>
+                        <span class = "work-title">
+                            <%= work.title %>
+                        </span><br>
+                        <span class = "work-text">
+                            <%= work.description %>
+                        </span><br>
+                        <span class = "artist">
+                            <%= work.user.name %>
+                        </span><br>
+                        <span>
+                            <% work.types.each  do |type| %>
+                            <%= type.work_type %>
+                            <% end %>
+                        </span>
                     </div>
-                <% end %>
-            </div>
+                </div>
+            <% end %>
+        </div>
         <%= link_to 'トップページ', root_path %>
         <%= link_to '投稿画面', new_work_path %>
         <%= link_to '自分の作品', user_path(current_user.id) %>

@@ -3,7 +3,8 @@ class MessagesController < ApplicationController
     
     def create
         # binding.pry
-        if Entry.where(:user_id => current_user.id, :room_id => params[:message][:room_id]).present?
+        @entry_room = Entry.where(:user_id => current_user.id, :room_id => params[:message][:room_id])
+        if @entry_room.present?
             @message = Message.create(params.require(:message).permit(:user_id, :content, :room_id).merge(:user_id => current_user.id))
             # Notificationの準備
             @room = @message.room

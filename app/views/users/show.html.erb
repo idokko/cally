@@ -23,24 +23,25 @@
             </div>
             <div class = "row">
                 <% @works.each do |work| %>
-                <div class = "col-md-3">
+                <div class = "col-xs-3 col-md-3">
                     <div class = "work-index-three">
-                        <%= image_tag work.image.url%>
-                        <p class = "work-title">
+                        <div class = "work-image">
+                            <%= image_tag work.image.url%>
+                        </div>
+                        <span class = "work-title">
                             <%= work.title %>
-                        </p>
-                        </p>
-                        <p class = "work-text">
+                        </span><br>
+                        <span class = "work-text">
                             <%= work.description %>
-                        </p>
-                        <p class = "artist">
+                        </span><br>
+                        <span class = "artist">
                             <%= work.user.name %>
-                        </p>
-                        <p>
+                        </span><br>
+                        <span>
                             <% work.types.each  do |type| %>
                             <%= type.work_type %>
                             <% end %>
-                        </p>
+                        </span>
                     </div>
                 </div>
                 <% end %>

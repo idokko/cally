@@ -19,27 +19,29 @@
         </div>
         <div class = "row">
             <% @works.each do |work| %>
-                <div class = "col-xs-3 col-md-3">
-                    <div class = "work-index-three">
-                        <div class = "work-image">
-                            <%= image_tag work.image.url%>
-                        </div>
-                        <span class = "work-title">
-                            <%= work.title %>
-                        </span><br>
-                        <span class = "work-text">
-                            <%= work.description %>
-                        </span><br>
-                        <span class = "artist">
-                            <%= work.user.name %>
-                        </span><br>
-                        <span>
-                            <% work.types.each  do |type| %>
-                            <%= type.work_type %>
-                            <% end %>
-                        </span>
+                    <div class = "col-xs-4 col-md-3">
+                        <%= link_to work_path(work.id) do %>
+                            <div class = "work-index-three">
+                                <div class = "work-image">
+                                    <%= image_tag work.image.url%>
+                                </div>
+                                <span class = "work-title">
+                                    <%= truncate(work.title, length: 15) %>
+                                </span><br>
+                                <span class = "work-text">
+                                    <%= truncate(work.description, length: 17) %>
+                                </span><br>
+                                <span class = "artist">
+                                    <%= work.user.name %>
+                                </span><br>
+                                <span>
+                                    <% work.types.each  do |type| %>
+                                        <%= type.work_type %>
+                                    <% end %>
+                                </span>
+                            </div>
+                        <% end %>
                     </div>
-                </div>
             <% end %>
         </div>
         <%= link_to 'トップページ', root_path %>

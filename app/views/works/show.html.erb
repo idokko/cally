@@ -1,3 +1,37 @@
-<% @work.types.each do |type| %>
-    <span class = 'badge badge-promary'><%= type.work_type %></span>
-<% end %>
+<div class = "work-show-wrapper">
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-md-offset-3 col-md-6">
+                <div class = "work-show-box">
+                    <h3>
+                        <%= link_to user_path(@work.user.id) do %>
+                            <%= @work.user.name %>
+                        <% end %>
+                        さんの作品
+                    </h3>
+                    <h5>※依頼や相談等の場合は、
+                    <%= link_to user_path(@work.user.id) do %>
+                        作者のページ
+                    <% end %>    
+                        からメッセージを送ってください</h5>
+                    <div class = "work-show-image">
+                        <%= image_tag @work.image.url %>
+                    </div>
+                    <h3 class = "work-show-title">
+                        <%= @work.title %>
+                    </h3>
+                    <h4>作品説明：</h4>
+                    <h4 class = "work-show-description">
+                        <%= safe_join(@work.description.split("\n"),tag(:br)) %>
+                    </h4>
+                    <h5>
+                        用途例：
+                        <% @work.types.each  do |type| %>
+                            <%= type.work_type %>
+                        <% end %>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -12,7 +12,7 @@ class RoomsController < ApplicationController
         # @messages = Message.where(room_id: myRoomIds).where.not('user_id = ?', current_user.id).order(created_at: :desc)
         # @rooms = Room.where(room_id: myRoomIds).where.not('user_id = ?', current_user.id).joins(:messages).merge(Message.order(created_at: :desc))
         # binding.pry
-        @anotherEntries = Entry.where(room_id: myRoomIds).where.not('user_id = ?', current_user.id).order(updated_at: "DESC")
+        @anotherEntries = Entry.where(room_id: myRoomIds).where('user_id != ?', current_user.id).order(updated_at: "DESC")
     end
         
     

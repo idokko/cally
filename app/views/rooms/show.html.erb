@@ -62,7 +62,12 @@
 </div>
 
 <script>
-    var element = document.documentElement;
-    var bottom = element.scrollHeight - element.clientHeight;
-    window.scroll(0, bottom);
+    window.addEventListener('DOMContentLoaded', function(){
+        var element = document.documentElement || document.body;
+    //     console.log(element.scrollHeight);
+    //     console.log(element.clientHeight);
+    //     var bottom = element.scrollHeight - element.clientHeight;
+    //     window.scrollBy(0, bottom);
+           element.scrollIntoView(false);
+    });
 </script>

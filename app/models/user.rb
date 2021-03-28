@@ -17,6 +17,7 @@ class User < ApplicationRecord
             presence: true, 
             format: {with: VALID_PASSWORD_REGEX, allow_blank: true}
   validates :password, confirmation: true
+  validates :artist, presence: true
   
   has_many :works, dependent: :destroy
   has_many :messages, dependent: :destroy

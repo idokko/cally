@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: cally_production
-  username: cally
-  password: <%= ENV['CALLY_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5

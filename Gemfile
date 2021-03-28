@@ -46,6 +46,7 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -78,3 +79,4 @@ gem 'sorcery'
 gem 'carrierwave'
 gem 'rails-i18n'
 gem 'font-awesome-rails'
+gem 'fog-aws'

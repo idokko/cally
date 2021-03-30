@@ -6,6 +6,40 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+password = "123456abC"
+
+User.create(
+    [
+        {
+            name: 'admin',
+            email: 'admin@co.jp',
+            password: password,
+            password_confirmation: password,
+            artist: 'yes',
+            prefectures: '愛知県',
+            admin: true
+        },
+        {
+            name: '123',
+            email: '123@co.jp',
+            password: password,
+            password_confirmation: password,
+            artist: 'yes',
+            prefectures: '鳥取県',
+            admin: false
+        },
+        {
+            name: '123456',
+            email: '123456@co.jp',
+            password: password,
+            password_confirmation: password,
+            artist: 'no',
+            prefectures: '北海道',
+            admin: false
+        },
+    ]
+)
+
 Type.create([
     {work_type: "色紙"},
     {work_type: "看板"},

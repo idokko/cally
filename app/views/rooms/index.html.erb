@@ -4,35 +4,38 @@
             <div class = "col-md-offset-3 col-md-6">
                 <h1 class = "text-center">メッセージ一覧</h1>
                 <hr>
-                <div class = "dm_list">
-                    <% if @anotherEntries.present? %>
-                        <% @anotherEntries.each do |e| %>
-                            <%= link_to room_path(e.room.id), class: "room-link" do %>
-                            <h3 class = "dm-room-ids">
-                                <strong>
-                                    <%= e.user.name %>
-                                </strong>
-                            </h3>
-                            <% end %>
-                            <span class = "fa-stack fa-xs">
-                                <% message_count = Notification.where(action: 'dm', visited_id: current_user, visitor_id: e.user.id, checked: false).count %>
-                                <% if message_count > 0 %>
-                                <i class = "fa fa-circle r-circle fa-stack-2x" aria-hidden = "true"></i>
-                                <i class = "fa fa-inverse r-circle-text fa-stack-1x">
-                                    <%=link_to room_path(e.room.id) do%>
-                                        <%= message_count %>
-                                    <% end %>
-                                </i>
-                                <% end %>
-                                </span>
-                            <h5 class = "dm-message">
-                                <%= e.room.messages.order(created_at: :desc).take.try(:content).truncate(30)%>
-                                <%= I18n.l(e.room.messages.last.created_at, format: :short) %>
-                            </h5>
+                <div class = "dm-list">
+                    <% @rooms.each do |room| %>
+                        <%= link_to room_path(room), class: "room-link" do %>
+                                <h3 class = "dm-list-user">
+                                    <strong>
+                                        <%= opponent_user(room) %>
+                                    </strong>
+                                </h3>
                         <% end %>
-                    <% else %>
-                        <h3 class = "text-center">メッセージの履歴はありません<h3>
+                        <span class = "fa-stack fa-xs">
+                                    <% message_count = Notification.where(action: 'dm', visited_id: current_user, visitor_id: room.users.where.not(id: current_user.id), checked: false).count %>
+                                    <% if message_count > 0 %>
+                                    <i class = "fa fa-circle r-circle fa-stack-2x" style = "color:ligtegreen" aria-hidden = "true"></i>
+                                    <i class = "fa fa-inverse r-circle-text fa-stack-1x" style = "color: white">
+                                        <%= link_to room_path(room) do %>
+                                            <%= message_count %>
+                                        <% end %>
+                                    </i>
+                                    <% end %>
+                                </span>
+                        <h5 class = "dm-list-content">
+                            <% if room.messages.present? %>
+                                <%= most_new_message_preview(room).content %>
+                            <% else %>
+                                メッセージはまだありません
+                            <% end %>
+                            <span class = "dm-list-time">
+                                <%= I18n.l(room.updated_at, format: :short)%>
+                            </span>
+                        </h5>
                     <% end %>
+                    
                 </div>
             </div>
         </div>

@@ -220,16 +220,17 @@ h1, h2 {
     margin-top: 100px;
 }
 
-.room-message {
-    text-indent: 2em; 
-}
-
-.room-time {
-    margin-left: 40px;
-}
-
 .room-link {
     display: inline-block;
+}
+
+.dm-list-content {
+    text-indent: 1em;
+    margin-top: 0px;
+}
+
+.dm-list-time {
+    margin-left: 20px;
 }
 
 .r-circle {

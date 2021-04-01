@@ -26,7 +26,7 @@
                                 </span>
                         <h5 class = "dm-list-content">
                             <% if room.messages.present? %>
-                                <%= most_new_message_preview(room).content %>
+                                <%= truncate(most_new_message_preview(room).content, length: 30) %>
                             <% else %>
                                 メッセージはまだありません
                             <% end %>

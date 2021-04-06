@@ -16,8 +16,9 @@
                     </div>
                     
                     <%= f.submit "ログイン", class: 'btn-block btn-black' %>
-                    <%= link_to '新規登録', new_user_path %>
-                    <%= link_to 'トップページ', root_path %>
+                    
+                    <%= link_to 'トップページ', root_path %><br>
+                    <%= link_to 'パスワードを忘れた方はこちら', password_resets_new_path %>
                 <% end %>
             </div>
         </div>

@@ -1,0 +1,15 @@
+<div class = "password-reset-new-wrapper">
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-md-offset-4 col-md-4">
+                <div class = "password-application">
+                    <%= form_with url: password_resets_path, local: true do |f| %>
+                        <%= f.label "メールアドレス" %><br>
+                        <%= f.email_field :email %>
+                        <%= f.submit "送信する" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

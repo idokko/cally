@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+  get 'password_resets/create'
+  get 'password_resets/edit'
+  get 'password_resets/update'
   get 'works/new'
   get 'sessions/new'
   get 'users/new'
@@ -6,7 +10,7 @@ Rails.application.routes.draw do
   get 'lists/index'
   get 'rooms/show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'pages#index'
+  root to: 'pages#index'
   
   get '/login', to: 'sessions#new', as: :login
   post '/login', to: 'sessions#create'
@@ -20,8 +24,12 @@ Rails.application.routes.draw do
   resources :works do
     get 'works', to: 'works#search'
   end
+  resources :password_resets, only: %i[new create edit update]
   
   namespace :admin do
     resources :users, only: [:index]
+  end
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: '/letter_opener'
   end
 end

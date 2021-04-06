@@ -6,7 +6,7 @@ class User < ApplicationRecord
 #   unless self.rooms.room_ids.messages
 # end  
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/
-  VALID_PASSWORD_REGEX = /\A(?=[a-z,A-Z\d])[a-z,A-Z\d]{8,20}\z/
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])[a-z,A-Z,\d]{8,20}\z/
   
 # 　allow_blankはエラーメッセージ用
   validates :name, 
@@ -18,6 +18,8 @@ class User < ApplicationRecord
             format: {with: VALID_PASSWORD_REGEX, allow_blank: true}
   validates :password, confirmation: true
   validates :artist, presence: true
+  validates :prefectures, presence: true
+  validates :reset_password_token, allow_nil: true, uniqueness: true
   
   has_many :works, dependent: :destroy
   has_many :messages, dependent: :destroy

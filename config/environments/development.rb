@@ -60,4 +60,11 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   
   config.web_console.whitelisted_ips = '0.0.0.0/0'
+  
+  # gem letter_opnerの準備
+  host = '1b048f474ec447a2b72a3e50dc2f1bd6.vfs.cloud9.us-east-1.amazonaws.com'
+  config.action_mailer.default_url_options = {host: host, port: $PORT, protocol: 'https'}
+  config.action_mailer.perform_caching = true
+  config.action_mailer.delivery_method = :letter_opener_web
+  config.action_mailer.perform_deliveries = true
 end

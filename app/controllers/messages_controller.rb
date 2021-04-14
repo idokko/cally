@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
         # binding.pry
         @entry_room = Entry.where(:user_id => current_user.id, :room_id => params[:message][:room_id])
         if @entry_room.present?
-            @message = Message.create(params.require(:message).permit(:user_id, :content, :room_id).merge(:user_id => current_user.id))
+            @message = Message.create(params.require(:message).permit(:user_id, :content, :room_id, images: []).merge(:user_id => current_user.id))
             # Notificationの準備
             @room = @message.room
             @anotherRoomMember = Entry.where(room_id: @room.id).where.not(user_id: current_user.id)

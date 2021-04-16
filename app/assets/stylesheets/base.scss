@@ -199,13 +199,30 @@ h1, h2 {
 .room-show-wrapper {
     margin-top: 80px;
 }
+
+// .message-right {
+//     width: calc(100% - 50px);
+//     background-color: #66ccff;
+//     margin-left: 50px;
+// }
+
 .message-right {
     background-color: #66ccff;
     display: inline-block;
+    text-align: left;
     margin-left: 50px;
     padding: 7px;
-    text-align: left;
     margin-bottom: -7px;
+    img {
+        object-fit: contain;
+        width: auto;
+        height: 200px;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 0px;
+        margin-bottom: 5px;
+        display: flex;
+    }
 }
 
 .message-left {
@@ -216,13 +233,13 @@ h1, h2 {
     margin-bottom: -7px;
 }
 
-.message-image-resize {
-    object-fit: contain;
-    width: 300px;
-    height: 200px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
+// .message-image-resize {
+//     object-fit: contain;
+//     width: auto;
+//     height: 200px;
+//     margin-top: 5px;
+//     margin-bottom: 10px;
+// }
 
 .image-select {
     margin-top: 10px;

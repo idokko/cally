@@ -26,7 +26,15 @@
                                 </span>
                         <h5 class = "dm-list-content">
                             <% if room.messages.present? %>
-                                <%= truncate(most_new_message_preview(room).content, length: 30) %>
+                                <% if most_new_message_preview(room).images %>
+                                    <% if most_new_message_preview(room).user_id == current_user.id  %>
+                                        画像を送りました
+                                    <% else %>
+                                        <%= opponent_user(room) %>さんから画像が送られました
+                                    <% end %>
+                                <% else %>
+                                    <%= truncate(most_new_message_preview(room).content, length: 30) %>
+                                <% end %>
                             <% else %>
                                 メッセージはまだありません
                             <% end %>

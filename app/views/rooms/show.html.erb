@@ -20,30 +20,43 @@
                     <% @messages.each do |m| %>
                         <% if m.user.name == current_user.name %>
                             <p class = "text-right">
-                                <span class = "message-right">
-                                    <%= safe_join(m.content.split("\n"),tag(:br)) %>
+                                
+                                    <% if m.content.present? %>
+                                    <span class = "message-right">
+                                        <%= safe_join(m.content.split("\n"),tag(:br)) %>
+                                    </span>
+                                    <% end %>
                                     <% if m.images.attached? %>
                                         <% m.images.each do |image| %>
-                                            <br>
-                                            <%= image_tag image, class: "message-image-resize" %>
+                                        <p class = "text-right">
+                                            <%= link_to image, "data-lightbox": image do %>
+                                                <%= image_tag image, class: "message-image-resize-right" %>
+                                            <% end %>
+                                        </p>
                                         <% end %>
                                     <% end %>
-                                </span>
                             </p>
                             <p class = "text-right">
                                     <%= I18n.l(m.created_at, format: :short) %>
                             </p>
                         <% else %>
                             <p>
+                                <% if m.content.present? %>
                                 <span class = "message-left">
                                     <%= safe_join(m.content.split("\n"),tag(:br)) %>
+                                </span>
+                                <% end %>
+                                <p>
                                     <% if m.images.attached? %>
                                         <% m.images.each do |image| %>
-                                            <br>
-                                            <%= image_tag image, class: "message-image-resize" %>
+                                        <p>
+                                            <%= link_to image, "data-lightbox": image do %>
+                                                <%= image_tag image, class: "message-image-resize-left" %>
+                                            <% end %>
+                                        </p>
                                         <% end %>
                                     <% end %>
-                                </span>
+                                </p>
                             </p>
                             <p>
                                 by
@@ -66,9 +79,8 @@
                     <%= f.file_field :images, multiple: true, class: "image-select" %>
                     <%= f.hidden_field :room_id, :value => @room.id %>
                     <br>
-                    <%= f.submit "送信する", class: "btn btn-info" %>
+                    <%= f.submit "送信する", class: "btn btn-info message-submit-button" %>
                 <% end %>
-                <%= link_to "ユーザー一覧", users_path, class: "btn btn-outline-primary" %>
             </div>
         </div>
     </div>
@@ -77,10 +89,6 @@
 <script>
     window.addEventListener('DOMContentLoaded', function(){
         var element = document.documentElement || document.body;
-    //     console.log(element.scrollHeight);
-    //     console.log(element.clientHeight);
-    //     var bottom = element.scrollHeight - element.clientHeight;
-    //     window.scrollBy(0, bottom);
            element.scrollIntoView(false);
     });
 </script>

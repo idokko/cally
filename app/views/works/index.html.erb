@@ -1,13 +1,3 @@
-
-<% if current_user.artist == "yes" %>
-    <p>
-        アーティストです
-    </p>
-<% else %>
-    <p>
-        アーティストではないです
-    </p>
-<% end %>
 <div class = "work-index-wrapper">
     <div class = "container">
         <h1 class = "text-center text-black">作品一覧</h1>
@@ -22,9 +12,9 @@
                     <div class = "col-xs-4 col-md-3">
                         <%= link_to work_path(work.id) do %>
                             <div class = "work-index-three">
-                                <div class = "work-image">
+                                <p class = "work-image">
                                     <%= image_tag work.image.url%>
-                                </div>
+                                </p>
                                 <span class = "work-title">
                                     <%= truncate(work.title, length: 15) %>
                                 </span><br>

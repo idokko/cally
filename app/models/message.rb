@@ -9,8 +9,8 @@ class Message < ApplicationRecord
     # def image
     #     self.images.variant(resize: '300×300').processed 
     # end
-    
+    private
     def up_image
-       self.images.attached? 
+        images.attached?
     end
 end

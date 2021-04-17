@@ -26,7 +26,7 @@
                                 </span>
                         <h5 class = "dm-list-content">
                             <% if room.messages.present? %>
-                                <% if most_new_message_preview(room).images %>
+                                <% if most_new_message_preview(room).images.attached? %>
                                     <% if most_new_message_preview(room).user_id == current_user.id  %>
                                         画像を送りました
                                     <% else %>

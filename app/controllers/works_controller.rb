@@ -1,12 +1,5 @@
 class WorksController < ApplicationController
-  before_action :logged_in_user, only: [:index, :new, :create, :destroy, :show, :search]
-  
-  def logged_in_user
-    unless logged_in?
-      flash[:danger] = "ログインしてください"
-      redirect_to login_path
-    end
-  end
+  before_action :require_login, only: [:index, :new, :create, :destroy, :show, :search]
   
   def index
     @works = Work.all
@@ -26,7 +19,7 @@ class WorksController < ApplicationController
       redirect_to user_path(current_user.id), success: '投稿しました' and return
       # @work.save
     else
-      flash.now[:danger] = '投稿できませんでした'
+      # flash.now[:danger] = '投稿できませんでした'
       render :new
     end
   end

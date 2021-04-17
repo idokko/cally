@@ -3,13 +3,34 @@ ja:
     activerecord:
         models:
             user: ユーザー
+            work: 作品
+            message: メッセージ
+            
         attributes:
             user:
                 name: 名前
                 email: メールアドレス
                 password: パスワード
                 password_confirmation: パスワード確認
+                artist: 作品を投稿しますか
                 
+            work:
+                image: 作品の画像
+                title: タイトル
+                description: 作品説明
+                type_ids: チェックボックス
+                
+            message:
+                content: 文字
+                images: 画像
+            
+        errors:
+            models:
+                message:
+                    attributes:
+                        content:
+                            blank: "文字または画像を入力してください"
+        
     # 時刻に使用
     time:
         formats:

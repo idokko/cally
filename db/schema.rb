@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_13_111629) do
+ActiveRecord::Schema.define(version: 2021_04_20_090346) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -40,13 +40,6 @@ ActiveRecord::Schema.define(version: 2021_04_13_111629) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "message_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "message_id"
-    t.string "photos"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.integer "room_id"
@@ -65,6 +58,8 @@ ActiveRecord::Schema.define(version: 2021_04_13_111629) do
     t.boolean "checked"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "content_checked"
+    t.integer "images_count"
   end
 
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

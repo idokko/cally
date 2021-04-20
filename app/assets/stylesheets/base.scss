@@ -76,6 +76,13 @@ h1, h2 {
 }
 
 
+//admin.users.index
+.admin-user-index-wrapper {
+    width: 100vw;
+    height: 100%;
+    padding-top: 100px;
+}
+
 //users.show
 .user-new-wrapper {
     width: 100vw;
@@ -244,6 +251,7 @@ h1, h2 {
     margin-bottom: -7px;
     object-fit: contain;
     width: auto;
+    max-width: 500px;
     height: 200px;
 }
 
@@ -262,6 +270,7 @@ h1, h2 {
     margin-bottom: -7px;
     object-fit: contain;
     width: auto;
+    max-width: 500px;
     height: 200px;
 }
 

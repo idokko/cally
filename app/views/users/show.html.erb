@@ -27,39 +27,41 @@
                         <%= form.submit '検索', name: nil %>
                     <% end %>
                 </div>
-                <div class = "row">
+                <% if @works.blank? %>
+                    <h3 class = "text-center">作品が投稿されていません</h3>
+                <% else %>
+                    <div class = "row">
                     <% @works.each do |work| %>
-                    <div class = "col-xs-4 col-md-3">
-                        <%= link_to work_path(work.id) do %>
-                            <div class = "work-index-three">
-                                <div class = "work-image">
-                                    <%= image_tag work.image.url%>
+                        <div class = "col-xs-4 col-md-3">
+                            <%= link_to work_path(work.id) do %>
+                                <div class = "work-index-three">
+                                    <div class = "work-image">
+                                        <%= image_tag work.image.url%>
+                                    </div>
+                                    <span class = "work-title">
+                                        <%= truncate(work.title, length: 15) %>
+                                    </span><br>
+                                    <span class = "work-text">
+                                        <%= truncate(work.description, length: 17) %>
+                                    </span><br>
+                                    <span class = "artist">
+                                        <%= work.user.name %>
+                                    </span><br>
+                                    <span>
+                                        <% work.types.each  do |type| %>
+                                        <%= type.work_type %>
+                                        <% end %>
+                                    </span>
                                 </div>
-                                <span class = "work-title">
-                                    <%= truncate(work.title, length: 15) %>
-                                </span><br>
-                                <span class = "work-text">
-                                    <%= truncate(work.description, length: 17) %>
-                                </span><br>
-                                <span class = "artist">
-                                    <%= work.user.name %>
-                                </span><br>
-                                <span>
-                                    <% work.types.each  do |type| %>
-                                    <%= type.work_type %>
-                                    <% end %>
-                                </span>
-                            </div>
-                        <% end %>
-                    </div>
+                            <% end %>
+                        </div>
                     <% end %>
                 </div>
+                <% end %>
             <% else %>
                 <h1 class = "text-center text-black"><%= @user.name %>さんのプロフィール</h1>
             <% end %>
             <%= link_to 'トップページ', root_path %>
-            <%= link_to '投稿画面', works_new_path %>
-            <%= link_to '作品一覧', works_path %>
         </div>
     </div>
 </div>

@@ -20,11 +20,17 @@ class MessagesController < ApplicationController
                     visited_id: @theId.user_id,
                     visitor_id: current_user.id,
                     checked: false,
-                    action: 'dm'
+                    action: 'dm',
+                    content_checked: false,
+                    images_count: @message.images.size
                 )
                 # 自分のメッセージの場合は、通知済みとする
                 if notification.visitor_id == notification.visited_id
                   notification.checked = true 
+                end
+                # @message.contentの中身があるか確認
+                unless @message.content.blank?
+                    notification.content_checked = true
                 end
                 notification.save!
             end

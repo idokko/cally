@@ -12,8 +12,8 @@ amazon:
   access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
   region: ap-northeast-1
-  bucket: cally-message-images-development
-  # bucket: cally-message-images-production
+  # bucket: cally-message-images-development
+  bucket: cally-message-images-production
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:

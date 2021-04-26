@@ -62,6 +62,9 @@
                 <h1 class = "text-center text-black"><%= @user.name %>さんのプロフィール</h1>
             <% end %>
             <%= link_to 'トップページ', root_path %>
+            <% if current_user.admin == true %>
+                <%= link_to '管理者画面', admin_users_path %>
+            <% end %>
         </div>
     </div>
 </div>

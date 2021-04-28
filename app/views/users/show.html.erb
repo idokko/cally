@@ -16,8 +16,11 @@
                             <%= f.submit "メッセージを始める", class: 'btn btn-default btn-lg' %>
                         <% end %>
                     <% end %>
+                <% else %>
+                    <%= link_to '編集', edit_user_path %>
                 <% end %>
                 </span>
+                
                 <div class = "list">
                     <span class = "type-title">
                        <目的> 

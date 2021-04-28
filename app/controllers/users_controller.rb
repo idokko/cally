@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:index, :new, :create]
+  before_action :set_user, only: %i[edit update destroy]
+  
   def index
     @user = User.find(params[:id])
   end
@@ -48,8 +50,30 @@ class UsersController < ApplicationController
     @works = @user.works
   end
   
+  def edit
+      @uer = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update(edit_user_params)
+      flash.now[:success] = "更新しました"
+      render :edit
+    else
+      render :edit
+    end
+  end
+  
   private
+  def set_user
+    @user = User.find(current_user.id)
+  end
+  
   def user_params
     params.require(:user).permit(:name, :prefectures, :email, :password, :password_confirmation, :artist)
+  end
+  
+  def edit_user_params
+    params.require(:user).permit(:name, :prefectures, :email, :artist)
   end
 end

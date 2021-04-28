@@ -14,7 +14,9 @@ class User < ApplicationRecord
   validates :email,
             uniqueness: true, presence: true, format: {with: VALID_EMAIL_REGEX, allow_blank: true}
   validates :password, :password_confirmation, 
-            presence: true, 
+            presence: true, on: :create
+  validates :password, :password_confirmation, 
+            presence: true, on: :update, allow_blank: true, 
             format: {with: VALID_PASSWORD_REGEX, allow_blank: true}
   validates :password, confirmation: true
   validates :artist, presence: true

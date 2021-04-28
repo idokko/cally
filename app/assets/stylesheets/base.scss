@@ -114,6 +114,11 @@ h1, h2 {
     padding-bottom: 50px;
 }
 
+//user.edit
+.user-edit-wrapper {
+    padding-top: 100px;
+}
+
 // admin.users.index
 .admin-users-index-wrapper {
     width: 100vw;
@@ -335,7 +340,7 @@ h1, h2 {
 }
 
 .room-index-footer {
-    padding-top: 50px;
+    margin-top: 50px;
 }
 
 //password_reset

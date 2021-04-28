@@ -1,0 +1,49 @@
+<div class = user-edit-wrapper>
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-md-offset-3 col-md-6">
+                
+                <% if @user.errors.any? %>
+                    <div class = "alert alert-danger">
+                        <ul>
+                            <% @user.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                <% end %>
+                
+                <h1 class = "text-center text-black">プロフィール編集</h1>
+                <%= form_for @user do |f| %>
+                    <div class = "form-group">
+                        <%= f.label :name, '名前' %>
+                        <%= f.text_field :name, class: 'form-control' %>
+                    </div>
+                    <div class = "form-group">
+                        <%= f.label :prefectures, '都道府県' %>
+                        <%= f.select :prefectures, User.prefectures.keys, {}, class: 'select-form' %>
+                    </div>
+                    <div class = "form-group">
+                        <%= f.label :email, 'メールアドレス' %>
+                        <%= f.email_field :email, class: 'form-control' %>
+                    </div>
+                    <div class = "form-group">
+                        <%= f.label :artist, '作品を投稿しますか' %>
+                        <div class = "radio-inline">
+                            <%= f.radio_button :artist, :yes %>
+                            <%= f.label :artist, 'はい', class: 'radio-label' %>
+                        </div>
+                        <div class = "radio-inline">
+                            <%= f.radio_button :artist, :no %>
+                            <%= f.label :artist, 'いいえ', class: 'radio-label' %>
+                        </div>
+                    </div>
+                    
+                    <%= f.submit '更新', class: 'btn btn-primary' %>
+                <% end %>
+                
+                <%= link_to 'パスワードを変更する方はこちら', password_resets_path %>
+            </div>
+        </div>
+    </div>
+</div>

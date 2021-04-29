@@ -21,6 +21,7 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   validates :artist, presence: true
   validates :prefectures, presence: true
+  validates :profile, length: {maximum: 200}, allow_blank: true
   validates :reset_password_token, allow_nil: true, uniqueness: true
   
   has_many :works, dependent: :destroy

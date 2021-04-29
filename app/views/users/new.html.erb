@@ -11,42 +11,47 @@
                         </ul>
                     </div>
                 <% end %>
-                <h1 class = "text-center text-black">新規登録</h1>
+                <h1 class = "text-center">新規登録</h1>
                 <%= form_for @user do |f| %>
                 
                     <div class = "form-group">
-                        <%= f.label '名前', class: 'text-black' %>
+                        <%= f.label :name, '名前' %>
                         <%= f.text_field :name, class: 'form-control' %>
                     </div>
                     <div class = "form-group">
-                        <%= f.label '都道府県', class: 'text-black' %>
+                        <%= f.label :prefectures, '都道府県' %>
                         <%= f.select :prefectures, User.prefectures.keys, {}, class: 'select-form' %>
                     </div>
                     <div class = "form-group">
-                        <%= f.label 'メールアドレス', class: 'text-black' %>
+                        <%= f.label :email, 'メールアドレス' %>
                         <%= f.email_field :email, class: 'form-control' %>
                     </div>
                     <div class = "form-group">
-                        <%= f.label 'パスワード', class: 'text-black' %>
+                        <%= f.label :password, 'パスワード', class: 'text-black' %>
                         <br><%= f.label '(アルファベット大文字、小文字、数字を1つ以上含む、8文字以上20文字以下)', class: 'text-small' %>
                         <%= f.password_field :password, class: 'form-control' %>
                     </div>
                     <div class = "form-group">
-                        <%= f.label 'パスワード確認', class: 'text-black' %>
+                        <%= f.label :password_confirmation, 'パスワード確認' %>
                         <%= f.password_field :password_confirmation, class: 'form-control' %>
                     </div>
                     <div class = "form-group">
-                        <%= f.label '作品を投稿しますか', class: `text-black` %>
+                        <%= f.label '作品を投稿しますか', for: "constraction" %>
                         <div class = "radio-inline">
                             <%= f.radio_button :artist, :yes %>
-                            <%= f.label 'はい', class: 'radio-label' %>
+                            <%= f.label :artist, 'はい' %>
                         </div>
                         <div class = "radio-inline">
                             <%= f.radio_button :artist, :no %>
-                            <%= f.label 'いいえ', class: 'radio-label' %>
+                            <%= f.label :artist, 'いいえ' %>
                         </div>
                     </div>
-                    
+                    <div id = "profile-field">
+                        <div class = "form-group">
+                            <%= f.label :profile, 'プロフィール(任意)' %>
+                            <%= f.text_area :profile, class: 'form-control', value: "" %>
+                        </div>
+                    </div>
                     <%= f.submit "登録", class: 'btn-block btn-black' %>
                 <% end %>
                 

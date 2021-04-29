@@ -70,10 +70,10 @@ class UsersController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:name, :prefectures, :email, :password, :password_confirmation, :artist)
+    params.require(:user).permit(:name, :prefectures, :email, :password, :password_confirmation, :artist, :profile)
   end
   
   def edit_user_params
-    params.require(:user).permit(:name, :prefectures, :email, :artist)
+    params.require(:user).permit(:name, :prefectures, :email, :artist, :profile)
   end
 end

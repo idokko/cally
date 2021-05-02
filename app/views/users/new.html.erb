@@ -12,7 +12,7 @@
                     </div>
                 <% end %>
                 <h1 class = "text-center">新規登録</h1>
-                <%= form_for @user do |f| %>
+                <%= form_with model: @user, local: true do |f| %>
                 
                     <div class = "form-group">
                         <%= f.label :name, '名前' %>
@@ -46,11 +46,13 @@
                             <%= f.label :artist, 'いいえ' %>
                         </div>
                     </div>
-                    <div id = "profile-field">
-                        <div class = "form-group">
-                            <%= f.label :profile, 'プロフィール(任意)' %>
-                            <%= f.text_area :profile, class: 'form-control', value: "" %>
-                        </div>
+                    <div class = "form-group">
+                        <%= f.label :profile_image, 'プロフィール画像(任意)' %>
+                        <%= f.file_field :profile_image %>
+                    </div>
+                    <div class = "form-group">
+                        <%= f.label :profile, 'プロフィール(任意)' %>
+                        <%= f.text_area :profile, class: 'form-control', value: "" %>
                     </div>
                     <%= f.submit "登録", class: 'btn-block btn-black' %>
                 <% end %>

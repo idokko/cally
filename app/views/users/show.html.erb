@@ -3,7 +3,7 @@
         <div class = "my-page">
             <% if @user.artist == "yes" %>
                 <h1 class = "text-center text-black"><%= @user.name %>さんのページ</h1>
-                <span class = "user-show-message">
+                <div class = "user-show-message">
                 <% unless @user.id == current_user.id %>
                     <!--メッセージRoomが既にある場合はそこへのリンク(showアクション)-->
                     <% if @isRoom == true %>
@@ -16,10 +16,30 @@
                             <%= f.submit "メッセージを始める", class: 'btn btn-default btn-lg' %>
                         <% end %>
                     <% end %>
-                <% else %>
-                    <%= link_to '編集', edit_user_path %>
                 <% end %>
-                </span>
+                </div>
+                
+                <div class = "user-show-profile-box">
+                        <div class = "user-show-profile-image-box">
+                            <% if @user.profile_image? %>
+                                <%= image_tag @user.profile_image.url, class: 'user-show-profile-image' %>
+                            <% else %>
+                                <%= image_tag 'icons/マイページ.png', class: 'user-show-profile-image' %>
+                            <% end %>
+                        </div>
+                        <div class = "user-show-profile-sentence-box">
+                            <% if @user.profile? %>
+                                <%= safe_join(@user.profile.split("\n"),tag(:br)) %>
+                            <% else %>
+                                <h4>プロフィール文はありません</h4>
+                            <% end %>
+                        </div>
+                    </div>
+                    <% if @user.id == current_user.id %>
+                        <div class = "user-show-profile-footer">
+                            <%= link_to '編集', edit_user_path %>
+                        </div>
+                    <% end %>
                 
                 <div class = "list">
                     <span class = "type-title">
@@ -62,7 +82,29 @@
                 </div>
                 <% end %>
             <% else %>
-                <h1 class = "text-center text-black"><%= @user.name %>さんのプロフィール</h1>
+                <h1 class = "text-center text-black"><%= @user.name %>さんのページ</h1>
+                <div class = "user-show-profile-box">
+                        <div class = "user-show-profile-image-box">
+                            <% if @user.profile_image? %>
+                                <%= image_tag @user.profile_image.url, class: 'user-show-profile-image' %>
+                            <% else %>
+                                <%= image_tag 'icons/マイページ.png', class: 'user-show-profile-image' %>
+                            <% end %>
+                        </div>
+                        <div class = "user-show-profile-sentence-box">
+                            <% if @user.profile? %>
+                                <%= safe_join(@user.profile.split("\n"),tag(:br)) %>
+                            <% else %>
+                                <h4>プロフィール文はありません</h4>
+                            <% end %>
+                        </div>
+                    </div>
+                    <% if @user.id == current_user.id %>
+                        <div class = "user-show-profile-footer">
+                            <%= link_to '編集', edit_user_path %>
+                        </div>
+                    <% end %>
+                    <h3 class = "text-center">作品投稿者ではありません</h3>
             <% end %>
             <%= link_to 'トップページ', root_path %>
             <% if current_user.admin == true %>

@@ -42,32 +42,43 @@
                         <% else %>
                             <p>
                                 <% if m.content.present? %>
-                                <span class = "message-left">
-                                    <%= safe_join(m.content.split("\n"),tag(:br)) %>
-                                </span>
+                                <div class = "message-left-box">
+                                    <div class = "message-left-profile-image-box">
+                                            <%= image_tag m.user.profile_image.url %>
+                                    </div>
+                                    <div class = "message-left">
+                                        <%= safe_join(m.content.split("\n"),tag(:br)) %>
+                                    </div>
+                                </div>
                                 <% end %>
                                 <p>
                                     <% if m.images.attached? %>
                                         <% m.images.each do |image| %>
                                         <p>
-                                            <%= link_to image, "data-lightbox": image do %>
-                                                <%= image_tag image, class: "message-image-resize-left" %>
-                                            <% end %>
+                                            <div class = "message-left-box">
+                                                <div class = "message-left-profile-image-box">
+                                                    <%= image_tag m.user.profile_image.url %>
+                                                </div>
+                                                <%= link_to image, "data-lightbox": image do %>
+                                                    <%= image_tag image, class: "message-image-resize-left" %>
+                                                <% end %>
+                                            </div>
                                         </p>
                                         <% end %>
                                     <% end %>
                                 </p>
                             </p>
-                            <p>
+                            <div class = "message-auther-time">
                                 by
                                 <strong>
                                     <a href = "/users/<%= m.user.id %>">
                                         <%= m.user.name %>
                                     </a>
                                 </strong>
-                                <br>
+                                <div class = "message-time">
                                     <%= I18n.l(m.created_at, format: :short) %>
-                            </p>
+                                </div>
+                            </div>
                         <% end %>
                     <% end %>
                 <% else %>

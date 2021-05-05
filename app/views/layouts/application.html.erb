@@ -35,7 +35,11 @@
           <% if logged_in? %>
             <li>
               <%= link_to user_path(current_user.id) do %>
-                <%= image_tag "icons/マイページ.png" %>
+                <% if current_user.profile_image.present? %>
+                  <%= image_tag current_user.profile_image.url %>
+                <% else %>
+                  <%= image_tag "icons/マイページ.png" %>
+                <% end %>
               <% end %>
             </li>
               <% if current_user.artist == "yes" %>
@@ -54,7 +58,7 @@
               <%= link_to rooms_path do %>
                 <span class = "fa-stack fa-lg">
                   <%= image_tag "icons/メール.png", class: "nav-mail" %>
-                  <% if checked_confirmation > 0%>
+                  <% if checked_confirmation > 0 %>
                     <i class = "fa fa-circle nav-r-circle fa-stack-1x"></i>
                   <% end %>
                 </span>

@@ -3,18 +3,6 @@
         <div class = "row">
             <div class = "col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6 room-show-container">
                 <h1>メッセージ</h1>
-                <h4>参加者</h4>
-                <% @entries.each do |e| %>
-                <% message_count = Notification.where(action: 'dm', visited_id: current_user, visitor_id: e.user.id, checked: false).count %>
-                    <h5>
-                        <string>
-                            <a href = "/users/<%= e.user.id %>">
-                                <%= e.user.name %>
-                            </a>
-                        </string>
-                    </h5>
-                <% end %>
-                
                 <hr>
                 <% if @messages.present? %>
                     <% @messages.each do |m| %>
@@ -44,7 +32,13 @@
                                 <% if m.content.present? %>
                                 <div class = "message-left-box">
                                     <div class = "message-left-profile-image-box">
-                                            <%= image_tag m.user.profile_image.url %>
+                                        <%= link_to user_path(m.user.id) do %>
+                                            <% if m.user.profile_image.present? %>
+                                                <%= image_tag m.user.profile_image.url %>
+                                            <% else %>
+                                                <%= image_tag "icons/マイページ.png" %>
+                                            <% end %>
+                                        <% end %>
                                     </div>
                                     <div class = "message-left">
                                         <%= safe_join(m.content.split("\n"),tag(:br)) %>
@@ -57,7 +51,13 @@
                                         <p>
                                             <div class = "message-left-box">
                                                 <div class = "message-left-profile-image-box">
-                                                    <%= image_tag m.user.profile_image.url %>
+                                                    <%= link_to user_path(m.user.id) do %>
+                                                        <% if m.user.profile_image.present? %>
+                                                            <%= image_tag m.user.profile_image.url %>
+                                                        <% else %>
+                                                            <%= image_tag "icons/マイページ.png" %>
+                                                        <% end %>
+                                                    <% end %>
                                                 </div>
                                                 <%= link_to image, "data-lightbox": image do %>
                                                     <%= image_tag image, class: "message-image-resize-left" %>
@@ -68,16 +68,12 @@
                                     <% end %>
                                 </p>
                             </p>
-                            <div class = "message-auther-time">
-                                by
-                                <strong>
-                                    <a href = "/users/<%= m.user.id %>">
-                                        <%= m.user.name %>
-                                    </a>
-                                </strong>
-                                <div class = "message-time">
-                                    <%= I18n.l(m.created_at, format: :short) %>
-                                </div>
+                            <div class = "message-time">
+                                <%= link_to user_path(m.user.id) do %>
+                                    <%= m.user.name %>
+                                <% end %>
+                                <br>
+                                <%= I18n.l(m.created_at, format: :short) %>
                             </div>
                         <% end %>
                     <% end %>

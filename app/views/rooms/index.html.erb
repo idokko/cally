@@ -4,46 +4,50 @@
             <div class = "col-md-offset-3 col-md-6">
                 <h1 class = "text-center">メッセージ一覧</h1>
                 <hr>
-                <div class = "dm-list">
-                    <% @rooms.each do |room| %>
-                        <%= link_to room_path(room), class: "room-link" do %>
-                                <h3 class = "dm-list-user">
-                                    <strong>
-                                        <%= opponent_user(room) %>
-                                    </strong>
-                                </h3>
-                        <% end %>
-                        <span class = "fa-stack fa-xs">
-                                    <% message_count = Notification.where(action: 'dm', visited_id: current_user, visitor_id: room.users.where.not(id: current_user.id), checked: false).count %>
-                                    <% if message_count > 0 %>
+                <% if @rooms.present? %>
+                    <div class = "dm-list">
+                        <% @rooms.each do |room| %>
+                            <%= link_to room_path(room), class: "room-link" do %>
+                                    <h3 class = "dm-list-user">
+                                        <strong>
+                                            <%= opponent_user(room) %>
+                                        </strong>
+                                    </h3>
+                            <% end %>
+                            <span class = "fa-stack fa-xs">
+                                <% message_count = Notification.where(action: 'dm', visited_id: current_user, visitor_id: room.users.where.not(id: current_user.id), checked: false).count %>
+                                <% if message_count > 0 %>
                                     <i class = "fa fa-circle r-circle fa-stack-2x" style = "color:ligtegreen" aria-hidden = "true"></i>
                                     <i class = "fa fa-inverse r-circle-text fa-stack-1x" style = "color: white">
                                         <%= link_to room_path(room) do %>
                                             <%= message_count %>
                                         <% end %>
                                     </i>
-                                    <% end %>
-                                </span>
-                        <h5 class = "dm-list-content">
-                            <% if room.messages.present? %>
-                                <% if most_new_message_preview(room).images.attached? %>
-                                    <% if most_new_message_preview(room).user_id == current_user.id  %>
-                                        画像を送りました
+                                <% end %>
+                            </span>
+                            <h5 class = "dm-list-content">
+                                <% if room.messages.present? %>
+                                    <% if most_new_message_preview(room).images.attached? %>
+                                        <% if most_new_message_preview(room).user_id == current_user.id  %>
+                                            画像を送りました
+                                        <% else %>
+                                            <%= opponent_user(room) %>さんから画像が送られました
+                                        <% end %>
                                     <% else %>
-                                        <%= opponent_user(room) %>さんから画像が送られました
+                                        <%= truncate(most_new_message_preview(room).content, length: 30) %>
                                     <% end %>
                                 <% else %>
-                                    <%= truncate(most_new_message_preview(room).content, length: 30) %>
+                                    メッセージはまだありません
                                 <% end %>
-                            <% else %>
-                                メッセージはまだありません
-                            <% end %>
-                            <span class = "dm-list-time">
-                                <%= I18n.l(room.updated_at, format: :short)%>
-                            </span>
-                        </h5>
-                    <% end %>
-                </div>
+                                <span class = "dm-list-time">
+                                    <%= I18n.l(room.updated_at, format: :short)%>
+                                </span>
+                            </h5>
+                        <% end %>
+                    </div>
+                <% else %>
+                    <h3 class = "text-center">やりとりがありません</h3>
+                <% end %>
                 <%= link_to 'トップページ', root_path, class: 'room-index-footer'%>
             </div>
         </div>

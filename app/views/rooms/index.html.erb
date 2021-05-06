@@ -15,12 +15,12 @@
                                     </h3>
                             <% end %>
                             <span class = "fa-stack fa-xs">
-                                <% message_count = Notification.where(action: 'dm', visited_id: current_user, visitor_id: room.users.where.not(id: current_user.id), checked: false).count %>
-                                <% if message_count > 0 %>
+                                <% @message_count = Notification.where(action: 'dm', visited_id: current_user, visitor_id: room.users.where.not(id: current_user.id), checked: false).count %>
+                                <% if @message_count > 0 %>
                                     <i class = "fa fa-circle r-circle fa-stack-2x" style = "color:ligtegreen" aria-hidden = "true"></i>
                                     <i class = "fa fa-inverse r-circle-text fa-stack-1x" style = "color: white">
                                         <%= link_to room_path(room) do %>
-                                            <%= message_count %>
+                                            <%= @message_count %>
                                         <% end %>
                                     </i>
                                 <% end %>

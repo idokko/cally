@@ -86,7 +86,7 @@
                     <%= f.file_field :images, multiple: true, class: "image-select" %>
                     <%= f.hidden_field :room_id, :value => @room.id %>
                     <br>
-                    <%= f.submit "送信する", class: "btn btn-info #{ @message ? 'disabled' : '' }message-submit-button", id: 'submit-btn' %>
+                    <%= f.submit "送信する", class: "btn btn-primary #{ @message ? 'disabled' : '' }message-submit-button", id: 'submit-btn' %>
                 <% end %>
             </div>
         </div>

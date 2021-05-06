@@ -48,7 +48,7 @@
                     </div>
                     <div class = "form-group">
                         <%= f.label :profile_image, 'プロフィール画像(任意)' %><br>
-                        </div class = "profile-image-field">
+                        <div class = "profile-image-field">
                             <% if @user.profile_image.present? %>
                                 <%= image_tag @user.profile_image, id: 'img_prev', class: 'profile-image' %>
                             <% else %>
@@ -76,9 +76,9 @@
                     </div>
                     <div class = "form-group">
                         <%= f.label :profile, 'プロフィール(任意)' %>
-                        <%= f.text_area :profile, class: 'form-control', value: "" %>
+                        <%= f.text_area :profile, class: 'form-control' %>
                     </div>
-                    <%= f.submit "登録", class: 'btn-block btn-black' %>
+                    <%= f.submit "登録", class: 'btn btn-primary user-submit-button' %>
                 <% end %>
                 
                 <%= link_to 'トップページ', root_path %>

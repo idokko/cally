@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
     before_action :require_login
+    require 'payjp'
     
     def index
         @rooms = current_user.rooms.joins(:messages).includes(:messages).order("messages.created_at DESC")
@@ -29,6 +30,13 @@ class RoomsController < ApplicationController
             redirect_back(fallback_location: rooms_path)
         end
         
-       
+        def pay
+            Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+             charge = Payjp::Charge.create(
+             :amount => params[:amount],
+             :card => params['payjp-token'],
+             :currency => 'jpy'
+            )    
+        end
     end
 end

@@ -19,7 +19,11 @@ Rails.application.routes.draw do
   # resources :users, only: [:index, :create, :new]
   # resources :users, path: '/', only: [:show, :edit, :uodate, :destroy]
   resources :users
-  resources :rooms
+  resources :rooms do
+    collection do
+      post 'pay/:id', to: 'rooms#pay', as: :pay
+    end
+  end
   resources :messages
   resources :works do
     get 'works', to: 'works#search'
@@ -29,6 +33,15 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index]
   end
+  
+  resources :cards, only: [:new, :create] do
+    # collection do
+    #   post 'show', to: 'cards#show'
+    #   post 'pay', to: 'cards#pay'
+    #   post 'delete', to: 'cards#delete'
+    # end
+  end
+  
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'
   end

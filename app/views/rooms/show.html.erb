@@ -88,13 +88,24 @@
                     <br>
                     <%= f.submit "送信する", class: "btn btn-primary #{ @message ? 'disabled' : '' }message-submit-button", id: 'submit-btn' %>
                 <% end %>
+                
+                <%= form_with local: true, url: pay_rooms_path do |f| %>
+                    金額：<%= f.text_field :amount %>
+                    <script
+                        type = "text/text/javascript"
+                        src = "https://checkout.pay.jp"
+                        class = "payjp-button"
+                        data-key = "<%= ENV["PAYJP_PUBLIC_KEY"] %>"
+                    >
+                    </script>
+                    <%= f.submit "カードで支払う", class: "btn btn-primary" %>
+                <% end %>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    console.log();
     window.addEventListener('turbolinks:load', function(){
         var element = document.documentElement || document.body;
         element.scrollIntoView(false);

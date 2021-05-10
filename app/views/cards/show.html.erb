@@ -1,0 +1,21 @@
+<div class = "card-show-wrapper">
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-md-offset-3 col-md-6">
+                <div class = "card-show">
+                    <h1 class = "text-center">
+                        登録クレジットカード情報
+                    </h1>
+                    <%= "**** **** **** " + @default_card_infomation.last4 %>
+                    <% exp_month = @default_card_infomation.exp_month.to_s %>
+                    <% exp_year = @default_card_infomation.exp_year.to_s.alice(2, 3) %>
+                    <%= exp_month + " / " + exp_year %>
+                    <%= form_tag(delete_cards_path, method: :post, id: 'charge-form', name: "inputForm") do %>
+                        <input name = "card_id" type="hidden" %></input>
+                        <button name = "button" type = "delete">削除する</button>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

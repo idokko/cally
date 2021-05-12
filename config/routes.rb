@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
   end
   
-  resources :cards, only: [:new, :create] do
+  resources :cards, only: [:new, :create, :show, :destroy] do
     # collection do
     #   post 'show', to: 'cards#show'
     #   post 'pay', to: 'cards#pay'

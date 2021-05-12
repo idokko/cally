@@ -3,6 +3,8 @@ class CardsController < ApplicationController
     require 'payjp'
     
     def new
+      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+      @card = Card.where(user_id: current_user.id)
     end
     
     def create
@@ -27,26 +29,46 @@ class CardsController < ApplicationController
     end
         
     def show
-      card = Card.find_by(user_id: current_user.id)
-      if card.blank?
-          redirect_to action: "new" 
-      else
-          Pay.api_key = ENV["PAYJP_SECRET_KEY"]
-          customer = Payjp::Customer.retrieve(card.customer_id)
-          @default_card_imformation = customer.cards.retrieve(card.card_id)
+      @card = Card.find_by(user_id: current_user.id)
+      unless @card.blank?
+        Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+        customer = Payjp::Customer.retrieve(@card.customer_id)
+        @customer_card = customer.cards.retrieve(@card.card_id)
+        
+        # カードブランド表示の準備
+        @card_brand = @customer_card.brand
+        case @card_brand
+          when "Visa"
+            @card_src = "VISA.png"
+          when "MasterCard"
+            @card_src = "MasterCard.png"
+          when "JCB"
+            @card_src = "JCB.png"
+          when "American Express"
+            @card_src = "AmericanExpress.png"
+          when "Diners Club"
+            @card_src = "DinersClub.png"
+          when "Discover"
+            @card_src = "Discover.png"
+        end
+        # 有効期限の記述
+        @exp_month = @customer_card.exp_month.to_s
+        @exp_year = @customer_card.exp_year.to_s.slice(2, 3)
       end
     end
     
         # PayjpとCardデータベースを削除
-    def delete
-       card = Card.find_by(user_id: current_user.id)
-       unless card.blank?
-          Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-          customer = Payjp::Customer.retrieve(card.customer_id)
+    def destroy
+       @card = Card.find_by(user_id: current_user.id)
+       unless @card.blank?
+          Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+          customer = Payjp::Customer.retrieve(@card.customer_id)
           customer.delete
-          card.delete
+          @card.delete
+          unless @card.destroy
+            redirect_to card_path(current_user.id), danger: "削除できませんでした"
+          end
        end
-       redirect_to action: "new"
     end
     
     # payjpとCardのデータベース作成

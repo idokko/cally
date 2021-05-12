@@ -3,6 +3,9 @@
         <div class = "row">
             <div class = "col-md-offset-3 col-md-6">
                 <h1 class = "text-center">クレジットカード登録</h1>
+                <% if @card.present? %>
+                    <h3 class = "text-center">既に登録されています</h3>
+                <% else %>
                 <div class = "card-new">
                     <div class = "form-group">
                         <h4>カード番号</h4>
@@ -27,8 +30,8 @@
                         <%= f.submit "登録する", class: "btn card-btn", id: "info-submit" %>
                     </div>
                     <% end %>
-                    
                 </div>
+                <% end %>
             </div>
         </div>
     </div>

@@ -76,6 +76,7 @@
                 
                 <%= link_to 'パスワードを変更する方はこちら', password_resets_path %>
                 <%= link_to 'カードを新規登録', new_card_path %>
+                <%= link_to '登録済みのクレジットカード', card_path(current_user.id) %>
             </div>
         </div>
     </div>

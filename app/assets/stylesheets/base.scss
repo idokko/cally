@@ -473,6 +473,87 @@ h1, h2 {
     margin-top: 10px;
 }
 
+// room.showの金額入力
+.hidden-box {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    padding: 0;
+}
+
+.hidden-box label {
+    padding: 8px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff0000;
+    border-radius: 5px;
+    cursor: ponter;
+    transition: 0.5s;
+}
+
+.hidden-box label:before {
+    display: inline-block;
+    content: '\f078';
+    font-family: 'FontAwesome';
+    padding-right: 5px;
+    transition: 0.2;
+    &:hover {
+        opacity: 0.7;
+        transition-duration: 0.3s;
+    }
+}
+
+.hidden-box input:checked ~ label:before {
+    content: '\f00d';
+    transform: roate(360deg);
+    color: #fff;
+}
+
+.hidden-box input {
+    display: none;
+}
+
+.hidden-box .hidden-show {
+    height: 0px;
+    padding: 0px;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+.hidden-box input:checked ~ .hidden-show {
+    padding-top: 10px;
+    height: auto;
+    opacity: 1;
+}
+
+.target {
+  background-color: #ea3345;
+  padding: 10px;
+  line-height: 1.5;
+  transition:
+    padding-top 300ms,
+    line-height 300ms;
+}
+.target.is-hidden {
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 0;
+  pointer-events: none;
+  display: none;
+
+}
+.text {
+  color: white;
+  transition: opacity 200ms;
+}
+.target.is-hidden .text {
+  opacity: 0;
+  display: none;
+}
+p {
+  margin: 0;
+}
+
 // card.new
 .card-new-wrapper {
     margin-top: 100px;

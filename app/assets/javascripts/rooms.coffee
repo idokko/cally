@@ -1,3 +1,6 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(window).bind 'turbolinks:load', ->
+    $target = document.querySelector('.target')
+    $button = document.querySelector('.button')
+    $button.addEventListener 'click', ->
+        $target.classList.toggle 'target'
+        return

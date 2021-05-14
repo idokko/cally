@@ -8,10 +8,3 @@ $(document).on 'turbolinks:load', ->
         return
         
     document.getElementById('amount_area').style.display = 'none'
-
-# $(document).on 'turbolinks:load', ->
-#     $target = document.querySelector('.target')
-#     $button = document.querySelector('.button')
-#     $button.addEventListener 'click', ->
-#         $target.classList.toggle 'visible'
-#         return

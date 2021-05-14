@@ -527,14 +527,6 @@ h1, h2 {
 }
 
 .target {
-  background-color: #ea3345;
-  padding: 10px;
-  line-height: 1.5;
-  transition:
-    padding-top 500ms,
-    line-height 500ms;
-}
-.target.hidden {
   padding-top: 0;
   padding-bottom: 0;
   line-height: 0;
@@ -542,7 +534,15 @@ h1, h2 {
   opacity: 0;
   display: none;
   visibility: hidden;
-
+}
+.visible {
+  background-color: #ea3345;
+  padding: 10px;
+  line-height: 1.5;
+  transition:
+  padding-top 500ms,
+  line-height 500ms;
+  visibility: visible;
 }
 .text {
 //   color: white;

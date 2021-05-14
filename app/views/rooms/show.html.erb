@@ -90,9 +90,8 @@
                 <% end %>
                 
                 <!-- 金額入力フォーム-->
-                <button class = "button">購入が決まったらこちら</button>
-                <div class = "target">
-                    <input class = "amount-area" type = 'hidden'>
+                <input type = "button" value = "購入が決まったらこちら" onclick = "amountBtn()" class = "amount-btn" />
+                <div id = "amount_area", class = "amount_contents">
                     <%= form_with local: true, url: pay_rooms_path do |f| %>
                         金額：<%= f.text_field :amount %>
                         <script
@@ -114,5 +113,7 @@
     window.addEventListener('turbolinks:load', function(){
         var element = document.documentElement || document.body;
         element.scrollIntoView(false);
+        
+        document.getElementById
     });
 </script>

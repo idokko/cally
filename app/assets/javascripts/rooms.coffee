@@ -1,6 +1,6 @@
-$(window).bind 'turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
     $target = document.querySelector('.target')
     $button = document.querySelector('.button')
     $button.addEventListener 'click', ->
-        $target.classList.toggle 'target'
+        $target.classList.toggle 'hidden'
         return

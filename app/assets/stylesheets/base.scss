@@ -531,28 +531,29 @@ h1, h2 {
   padding: 10px;
   line-height: 1.5;
   transition:
-    padding-top 300ms,
-    line-height 300ms;
+    padding-top 500ms,
+    line-height 500ms;
 }
-.target.is-hidden {
+.target.hidden {
   padding-top: 0;
   padding-bottom: 0;
   line-height: 0;
   pointer-events: none;
+  opacity: 0;
   display: none;
+  visibility: hidden;
 
 }
 .text {
-  color: white;
-  transition: opacity 200ms;
+//   color: white;
+//   transition: opacity 200ms;
+  
 }
-.target.is-hidden .text {
-  opacity: 0;
-  display: none;
-}
-p {
-  margin: 0;
-}
+// .target.is-hidden .text {
+//   opacity: 0;
+//   display: none;
+//   visibility: hidden;
+// }
 
 // card.new
 .card-new-wrapper {

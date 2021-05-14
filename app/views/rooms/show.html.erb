@@ -91,8 +91,10 @@
                 
                 <!-- 金額入力フォーム-->
                 <button class = "button">購入が決まったらこちら</button>
+                <div class = "amount-area">
                 <div class = "target">
-                    <div class = "text" type = 'hidden'>
+                    
+                    <input class = "amount-area" type = 'hidden'>
                     <%= form_with local: true, url: pay_rooms_path do |f| %>
                         金額：<%= f.text_field :amount %>
                         <script

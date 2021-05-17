@@ -1,0 +1,47 @@
+<div class = "room-buy-wrapper">
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-md-offset-3 col-md-6">
+                <h1 class = "text-center">購入内容の確認</h1>
+                <div class = "buy-details">
+                    <div class = "name-contents">
+                        <h3>作者名：<%= @another_user.name %></h3>
+                    </div>
+                    <div class = "price-contentes">
+                        <h3 class = "price-tag" >支払金額</h3>
+                        <h3 class = "price"><%= @price %>円</h3>
+                    </div>
+                    <% if @user.card.present? %>
+                        <div class = "card-contents">
+                            <h3 class = "card-tag">クレジットカード情報</h3>
+                            <%= image_tag "#{card_src}", class: 'card-brand-img' %>
+                            <div class = "card-info">
+                                <h5 class = "card-number"><%= "**** **** ****" + @customer_card.last4 %></h5>
+                                <div class = "card-exp">
+                                    <h5 class = "card-exp-tag">有効期限</h5>
+                                    <h5 class = "card-exp-date"><%= @exp_month + " / " + @exp_year %></h5>
+                                </div>
+                                <div class = "card-buy-btn">
+                                    <%= link_to "登録クレジットカードで購入" %>
+                                </div>
+                            </div>
+                        </div>
+                    <% else %>
+                        <div class = "non-card-buy-btn">
+                            <%= form_tag(action: :pay, method: :post) do %>
+                                <script
+                                    type = "text/javascript"
+                                    src = "https://checkout.pay.jp"
+                                    class = "payjp-button"
+                                    data-text = "購入する"
+                                    data-key = "<%= ENV["PAYJP_PRIVATE_KEY"] %>"
+                                >
+                                </script>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

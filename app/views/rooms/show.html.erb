@@ -81,28 +81,24 @@
                     <h3 class = "text-center">メッセージはありません</h3>
                 <% end %>
                 
-                <%= form_with model: @message, local: true do |f| %>
-                    <%= f.text_area :content, class: "form-control", :placeholder => "メッセージを入力してください"%>
-                    <%= f.file_field :images, multiple: true, class: "image-select" %>
-                    <%= f.hidden_field :room_id, :value => @room.id %>
-                    <br>
-                    <%= f.submit "送信する", class: "btn btn-primary #{ @message ? 'disabled' : '' }message-submit-button", id: 'submit-btn' %>
-                <% end %>
+                    <%= form_with model: @message, local: true do |f| %>
+                        <%= f.text_area :content, class: "form-control", :placeholder => "メッセージを入力してください"%>
+                        <%= f.file_field :images, multiple: true, class: "image-select" %>
+                        <%= f.hidden_field :room_id, :value => @room.id %>
+                        <%= f.submit "送信する", class: "btn btn-primary message-btn #{ @message ? 'disabled' : '' }message-submit-button", id: 'submit-btn' %>
+                    <% end %>
+                
                 
                 <!-- 金額入力フォーム-->
-                <input type = "button" value = "購入が決まったらこちら" onclick = "amountBtn()" class = "amount-btn" />
-                <div id = "amount_area", class = "amount_contents">
-                    <%= form_with local: true, url: pay_rooms_path do |f| %>
-                        金額：<%= f.text_field :amount %>
-                        <script
-                            type = "text/text/javascript"
-                            src = "https://checkout.pay.jp"
-                            class = "payjp-button"
-                            data-key = "<%= ENV["PAYJP_PUBLIC_KEY"] %>"
-                        >
-                        </script>
-                        <%= f.submit "カードで支払う", class: "btn btn-primary" %>
-                    <% end %>
+                <div class = "amount_contents">
+                    <h5><input type = "button" value = "購入が決まったらこちら" onclick = "amountBtn()" class = "amount-btn" /></h5>
+                    <div id = "amount_area", class = "amount_form">
+                        <%= form_with model: @price, local: true do |f| %>
+                            金額：<%= f.text_field :price %> 円
+                            <%= f.hidden_field :room_id, :value => @room.id %>
+                            <%= f.submit "購入確認へ", class: "btn btn-primary" %>
+                        <% end %>
+                    </div>
                 </div>
             </div>
         </div>

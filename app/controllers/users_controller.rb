@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :require_login, only: [:index, :new, :create]
+  skip_before_action :require_login, only: [:index, :new, :create, :show]
   before_action :set_user, only: %i[edit update destroy]
   
   def index
@@ -15,13 +15,11 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to login_path, success: '登録が完了しました'
     else
-      # flash.now[:danger] = "登録に失敗しました"
       render :new
     end
   end
   
   def show
-    # binding.pry
     @user = User.find(params[:id])
     # 自分が参加しているメッセージルームの情報を取得する
     @currentUserEntry = Entry.where(user_id: current_user.id)

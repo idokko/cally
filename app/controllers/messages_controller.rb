@@ -2,7 +2,6 @@ class MessagesController < ApplicationController
     before_action :require_login
     
     def create
-        # binding.pry
         @entry_room = Entry.where(:user_id => current_user.id, :room_id => params[:message][:room_id])
         if @entry_room.present?
             # binding.pry

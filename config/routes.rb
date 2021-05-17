@@ -16,12 +16,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   post 'logout', to: 'sessions#destroy', as: :logout
   
-  # resources :users, only: [:index, :create, :new]
-  # resources :users, path: '/', only: [:show, :edit, :uodate, :destroy]
   resources :users
   resources :rooms do
-    collection do
-      post 'pay/:id', to: 'rooms#pay', as: :pay
+      member do
+        get "buy"
+        post "pay"
     end
   end
   resources :messages
@@ -34,13 +33,8 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
   end
   
-  resources :cards, only: [:new, :create, :show, :destroy] do
-    # collection do
-    #   post 'show', to: 'cards#show'
-    #   post 'pay', to: 'cards#pay'
-    #   post 'delete', to: 'cards#delete'
-    # end
-  end
+  resources :cards, only: [:new, :create, :show, :destroy]
+  resources :costs, only: %i[new create]
   
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'

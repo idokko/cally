@@ -2,7 +2,8 @@
     <div class = container>
         <div class = row> 
             <div class = "col-md-offset-4 col-md-4 users-new-container">
-                <h1 class = "text-center text-block">ログイン</h1>
+                <h1 class = "heading">ログイン</h1>
+                <hr class = "hr-color" style = "margin-bottom: 35px;">
                 <%= form_for :session, url: login_path, local: true do |f| %>
                     
                     <div class = "form-group">
@@ -15,9 +16,9 @@
                         <%= f.password_field :password, class: 'form-control' %>
                     </div>
                     
-                    <%= f.submit "ログイン", class: 'btn-block btn-black' %>
+                    <%= f.submit "ログイン", class: 'btn btn-outline-secondary btn-black' %>
                     
-                    <%= link_to 'トップページ', root_path %><br>
+                    <%= link_to 'トップページ', root_path, class: 'session-toppage-btn' %><br>
                     <%= link_to 'パスワードを忘れた方はこちら', password_resets_new_path %>
                 <% end %>
             </div>

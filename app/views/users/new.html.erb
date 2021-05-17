@@ -11,9 +11,9 @@
                         </ul>
                     </div>
                 <% end %>
-                <h1 class = "text-center">新規登録</h1>
+                <h1 class = "heading">新規登録</h1>
+                <hr class = "hr-color" style = "margin-bottom: 35px;">
                 <%= form_with model: @user, local: true do |f| %>
-                
                     <div class = "form-group">
                         <%= f.label :name, '名前' %>
                         <%= f.text_field :name, class: 'form-control' %>
@@ -78,7 +78,7 @@
                         <%= f.label :profile, 'プロフィール(任意)' %>
                         <%= f.text_area :profile, class: 'form-control' %>
                     </div>
-                    <%= f.submit "登録", class: 'btn btn-primary user-submit-button' %>
+                    <%= f.submit "登録", class: 'btn btn-outline-secondary btn-black' %>
                 <% end %>
                 
                 <%= link_to 'トップページ', root_path %>

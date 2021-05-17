@@ -1,6 +1,7 @@
 <div class = "work-index-wrapper">
     <div class = "container">
         <h1 class = "text-center text-black">作品一覧</h1>
+        <hr class = "hr-color" style = "margin-bottom: 35px;" >
         <div class = "list">
             <%= form_with url: works_path, method: :get, local: true do |form| %>
                 <%= form.select("type_id", Type.pluck(:work_type, :id), {include_blank: true}) %>

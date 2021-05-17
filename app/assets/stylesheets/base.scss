@@ -16,6 +16,15 @@ h1, h2 {
     color: #fff;
 }
 
+.heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hr-color {
+    border-color: #696969;
+}
+
 // navbar
 .navbar-transparent {
     background-color: #c0c0c0;
@@ -87,12 +96,13 @@ h1, h2 {
 }
 
 .btn-black {
+    width: 100%;
     color: #333333;
     border: 1px  solid #333;
     padding-top: 5px;
     margin-top: 10px;
     margin-bottom: 15px;
-    font-size: 28px;
+    font-size: 20px;
     background-color: rgba(0,0,0,0.0);
     
     &:hover {
@@ -264,6 +274,15 @@ h1, h2 {
     margin-bottom: 15px;
 }
 
+.edit-password-btn {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.edit-card-btn {
+    margin-bottom: 5px;
+}
+
 // admin.users.index
 .admin-users-index-wrapper {
     width: 100vw;
@@ -284,6 +303,12 @@ h1, h2 {
     .form-group {
         margin-bottom: 20px;
     }
+}
+
+.session-toppage-btn {
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
 //password_reset
@@ -413,7 +438,8 @@ h1, h2 {
 }
 
 .message-right {
-    background-color: #66ccff;
+    // background-color: #66ccff;
+    background-color: #ccff99;
     display: inline-block;
     text-align: left;
     margin-left: 50px;
@@ -421,7 +447,8 @@ h1, h2 {
 }
 
 .message-image-resize-right {
-    background-color: #66ccff;
+    // background-color: #66ccff;
+    background-color: #ccff99;
     display: inline-block;
     padding: 7px;
     object-fit: contain;
@@ -448,13 +475,15 @@ h1, h2 {
 }
 
 .message-left {
-    background-color: #ccff99;
+    background-color: #fdfdfd;
+    border: thin dotted gray;
     display: inline-block;
     padding: 7px;
 }
 
 .message-image-resize-left {
-    background-color: #ccff99;
+    background-color: #fdfdfd;
+    border: thin dotted gray;
     display: inline-block;
     padding: 7px;
     object-fit: contain;
@@ -498,7 +527,7 @@ h1, h2 {
     width: 100vw;
     height: 100vh;
     background-color: #f5f5f5;
-    padding-top: 100px;
+    padding-top: 120px;
     padding-bottom: 50px;
 }
 
@@ -532,10 +561,12 @@ h1, h2 {
 
 #payjp_checkout_box input[type=button] {
     width: 100%;
-    height: 50px;
-    font-size: 50px;
+    height: 45px;
+    font-size: 20px !important;
     margin-top: 20px;
     margin-bottom: 20px;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
 }
 
 // room.pay
@@ -543,8 +574,20 @@ h1, h2 {
     width: 100vw;
     height: 100vh;
     background-color: #f5f5f5;
-    padding-top: 100px;
+    padding-top: 130px;
     padding-bottom: 50px;
+}
+
+.pay-contents {
+    display: block;
+    background-color: #fdfdfd;
+    padding: 20px;
+    text-align: center;
+}
+
+.pay-content-message-btn {
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 // card.new

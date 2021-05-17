@@ -14,7 +14,8 @@
                     </div>
                 <% end %>
                 
-                <h1 class = "text-center">作品投稿</h1>
+                <h1 class = "heading">作品投稿</h1>
+                <hr class = "hr-color" style = "margin-bottom: 35px;" >
                 <%= form_for @work do |f| %>
                     <div class = "form-group">
                         <%= f.label '作品' %>
@@ -39,7 +40,7 @@
                         <% end %>
                     </div>
                     
-                    <%= f.submit '投稿する', class: 'btn btn-primary work-submit-button' %><br>
+                    <%= f.submit '投稿する', class: 'btn btn-outline-secondary btn-black' %><br>
                     <%= link_to 'トップページ', root_path %>
                 <% end %>
             </div>

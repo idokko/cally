@@ -13,7 +13,8 @@
                     </div>
                 <% end %>
                 
-                <h1 class = "text-center text-black">プロフィール編集</h1>
+                <h1 class = "heading">プロフィール編集</h1>
+                <hr class = "hr-color">
                 <%= form_with model: @user, local: true do |f| %>
                     <div class = "form-group">
                         <%= f.label :name, '名前' %>
@@ -71,12 +72,17 @@
                         <%= f.text_area :profile, class: 'form-control' %>
                     </div>
                     
-                    <%= f.submit '更新', class: 'btn btn-primary update-button' %>
+                    <%= f.submit '更新', class: 'btn btn-outline-secondary btn-black' %>
                 <% end %>
-                
-                <%= link_to 'パスワードを変更する方はこちら', password_resets_path %>
-                <%= link_to 'カードを新規登録', new_card_path %>
-                <%= link_to '登録済みのクレジットカード', card_path(current_user.id) %>
+                <p class = "edit-password-btn">
+                    <%= link_to 'パスワードを変更する方はこちら', password_resets_path  %>
+                </p>
+                <p class = "edit-card-btn">
+                    <%= link_to 'カードを新規登録', new_card_path %>
+                </p>
+                <p class = "edit-card-btn">
+                    <%= link_to '登録済みのクレジットカード', card_path(current_user.id) %>
+                </p>
             </div>
         </div>
     </div>

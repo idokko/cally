@@ -591,11 +591,52 @@ h1, h2 {
 }
 
 // card.new
+.card-image {
+    margin-bottom: 20px;
+    img {
+        width: 15%;
+        height: 15%;
+    }
+}
+
 .card-new-wrapper {
     margin-top: 100px;
+}
+
+.card-new-number-tag {
+    margin-top: 40px;
+    margin-bottom: 8px;
+}
+
+.card-new-number-form {
+    margin-bottom: 10px;
+    border: solid 1px #d3d3d3;
+}
+
+.card-new-exp-tag {
+    margin-bottom: 8px;
+}
+
+.card-new-cvc-tag {
+    margin-bottom: 8px;
+}
+
+.card-new-exp-form {
+    margin-bottom: 20px;
+    border: solid 1px #d3d3d3;
+}
+
+.card-new-cvc-form {
+    margin-bottom: 20px;
+    border: solid 1px #d3d3d3;
 }
 
 // card.show
 .card-show-wrapper{
     margin-top: 100px;
+}
+
+.card-show-noncard-tag {
+    text-align: center;
+    margin-top: 65px;
 }

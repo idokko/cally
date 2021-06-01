@@ -8,24 +8,27 @@ class CardsController < ApplicationController
     end
     
     def create
-       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-       unless params['payjp_token'].blank?
+      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+      unless params['payjp_token'].blank?
+        binding.pry
         #   生成したトークンから、顧客情報と紐付け、PAY.JP管理サイトに登録
           customer = Payjp::Customer.create(
             email: current_user.email,
-            card: params["payjp_token"],
+            card: params['payjp_token'],
             metadata: {user_id: current_user.id}
           )
         #   トークン化した情報をアプリのcardsテーブルに登録
           @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+          
           if @card.save
-             redirect_to user_path(current_user.id)
+            redirect_to user_path(current_user.id)
           else
-             redirect_to action: "new"
+            redirect_to action: "show"
           end
-       else
-          redirect_to action: "new", danger: "登録できませんでした"
-       end
+      else
+          flash.now[:danger] = '登録出来ませんでした'
+          redirect_to new_card_path
+      end
     end
         
     def show
@@ -72,24 +75,24 @@ class CardsController < ApplicationController
     end
     
     # payjpとCardのデータベース作成
-    # def pay
-    #   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    #   if params['payjp_token'].blank?
-    #       redirect_to action: "new"
-    #   else
-    #       customer = Payjp::Customer.create(
-    #         card: params['payjp_token']
-    #       )
-    #       @card = Card.new(
-    #         user_id: current_user.id,
-    #         customer_id: customer.id,
-    #         card_id: customer.default_card
-    #       )  
-    #       if @card.save
-    #         redirect_to action: "show"
-    #       else
-    #         redirect_to action: "pay" 
-    #       end
-    #   end
-    # end
+    def pay
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      if params['payjp_token'].blank?
+          redirect_to action: "new"
+      else
+          customer = Payjp::Customer.create(
+            card: params['payjp_token']
+          )
+          @card = Card.new(
+            user_id: current_user.id,
+            customer_id: customer.id,
+            card_id: customer.default_card
+          )  
+          if @card.save
+            redirect_to action: "show"
+          else
+            redirect_to action: "pay" 
+          end
+      end
+    end
 end

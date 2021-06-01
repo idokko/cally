@@ -14,7 +14,6 @@
                 <% end %>
                 
                 <h1 class = "heading">プロフィール編集</h1>
-                <hr class = "hr-color">
                 <%= form_with model: @user, local: true do |f| %>
                     <div class = "form-group">
                         <%= f.label :name, '名前' %>
@@ -76,12 +75,6 @@
                 <% end %>
                 <p class = "edit-password-btn">
                     <%= link_to 'パスワードを変更する方はこちら', password_resets_path  %>
-                </p>
-                <p class = "edit-card-btn">
-                    <%= link_to 'カードを新規登録', new_card_path %>
-                </p>
-                <p class = "edit-card-btn">
-                    <%= link_to '登録済みのクレジットカード', card_path(current_user.id) %>
                 </p>
             </div>
         </div>

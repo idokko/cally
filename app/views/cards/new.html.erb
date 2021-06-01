@@ -9,7 +9,7 @@
                 <% else %>
                 <div class = "card-new">
                     <div class = "form-group">
-                        <h4>カード番号</h4>
+                        <h4 class = "card-new-number-tag">カード番号</h4>
                         <div id = "number-form", class = "payjs-outer"></div>
                         <div class = "card-image">
                             <%= image_tag 'cards/VISA.png' %>
@@ -19,16 +19,16 @@
                             <%= image_tag 'cards/DinersClub.png' %>
                             <%= image_tag 'cards/Discover.png' %>
                         </div>
-                        <h4>有効期限</h4>
+                        <h4 class = "card-new-exp-tag">有効期限</h4>
                         <div id = "expiry-form", class = "payjs-outer"></div>
-                        <h4>セキュリティーコード</h4>
+                        <h4 class = "card-new-cvc-tag">セキュリティーコード</h4>
                         <div id = "cvc-form", class = "payjs-outer"></div>
                     </div>
                 </div>
                 <div class = "form-group">
-                    <%= form_with url: cards_path, method: :post, id: "card-form" do |f| %>
+                    <%= form_with url: cards_path,method: :post, id: "card_form" do |f| %>
                     <div id = "card_token">
-                        <%= f.submit "登録する", class: "btn card-btn", id: "info-submit" %>
+                        <%= f.submit "登録する", class: "btn btn-outline-secondary btn-black", id: "info-submit" %>
                     </div>
                     <% end %>
                 </div>
@@ -37,3 +37,4 @@
         </div>
     </div>
 </div>
+

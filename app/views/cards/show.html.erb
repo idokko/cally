@@ -9,9 +9,9 @@
                     <hr class = "hr-color">
                     <div class = "card-info">
                     <% if @customer_card.blank? %>
-                        <h3 class = "text-center">クレジットカードが登録されていません</h3>
+                        <h3 class = "card-show-noncard-tag">クレジットカードが登録されていません</h3>
                     <% else %>
-                        <div class = "card-info-image">
+                        <div class = "card-image">
                             <%= image_tag "cards/#{@card_src}" %>
                         </div>
                         <div class = "card-info-content">

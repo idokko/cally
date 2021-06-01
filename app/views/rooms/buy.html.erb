@@ -18,7 +18,9 @@
                     <% if @user.card.present? %>
                         <div class = "card-contents">
                             <h3 class = "card-tag">クレジットカード情報</h3>
-                            <%= image_tag "#{card_src}", class: 'card-brand-img' %>
+                            <div class = "card-image">
+                                <%= image_tag "#{card_src}", class: 'card-brand-img' %>
+                            </div>
                             <div class = "card-info">
                                 <h5 class = "card-number"><%= "**** **** ****" + @customer_card.last4 %></h5>
                                 <div class = "card-exp">

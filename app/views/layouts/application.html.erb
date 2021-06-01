@@ -8,8 +8,8 @@
     <!-- jQueryの読み込み -->
     <script src = "https://code.jquery.com/jquery-2.2.4.min.js"></script>
     
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     
     <!-- Lightbox2の導入(画像ポップアップ機能)3行追加 -->
     <link href = "https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel = "stylesheet">
@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap" rel="stylesheet">
     
     <!-- Pay.jp導入-->
-    <script src = "https://js.pay.jp/v2/pay.js"></script>
+    <script src="https://js.pay.jp/v2/pay.js", type: "text/javascript"></script>
   </head>
 
   <body>

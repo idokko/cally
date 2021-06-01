@@ -1,4 +1,4 @@
-document.addEventListener 'DOMContentLoaded', ->
+$(document).on 'turbolinks:load', ->
     document.amountBtn = ->
         amount_area = document.getElementById('amount_area')
         if amount_area.style.display == 'block'

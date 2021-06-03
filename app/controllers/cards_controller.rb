@@ -10,7 +10,6 @@ class CardsController < ApplicationController
     def create
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
       unless params['payjp_token'].blank?
-        binding.pry
         #   生成したトークンから、顧客情報と紐付け、PAY.JP管理サイトに登録
           customer = Payjp::Customer.create(
             email: current_user.email,
@@ -26,8 +25,9 @@ class CardsController < ApplicationController
             redirect_to action: "show"
           end
       else
+        # binding.pry
           flash.now[:danger] = '登録出来ませんでした'
-          redirect_to new_card_path
+          render :new
       end
     end
         

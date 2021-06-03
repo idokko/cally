@@ -92,10 +92,11 @@
                 <div class = "amount_contents">
                     <h5><input type = "button" value = "購入が決まったらこちら" onclick = "amountBtn()" class = "amount-btn" /></h5>
                     <div id = "amount_area", class = "amount_form">
-                        <%= form_with model: @price, local: true do |f| %>
-                            金額：<%= f.text_field :price %> 円
+                        <%= form_with model: @price, local: true, class: 'js-form' do |f| %>
+                            <div class = "amount-text">金額：<%= f.text_field :price %> 円</div>
                             <%= f.hidden_field :room_id, :value => @room.id %>
-                            <%= f.submit "購入確認へ", class: "btn btn-primary" %>
+                            <%= f.submit "購入確認へ", class: "to-buy-btn" %>
+                            <div class = "js-messsage-errors"></div>
                         <% end %>
                     </div>
                 </div>

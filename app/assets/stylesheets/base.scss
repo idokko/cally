@@ -511,16 +511,45 @@ h1, h2 {
 
 // room.showの金額入力
 .amount-btn {
-    color: #fff;
-    background-color: #dd0000;
+    color: #dd0000;
+    // background-color: #dd0000;
+    font-weight: bold;
     margin-top: 40px;
     padding: 10px;
-    border: none;
+    border: solid #dd0000;
     border-radius: 5px;
     &:hover {
         opacity: 0.8;
         transition-duration: 0.3s;
     }
+}
+
+.amount-text {
+    display: inline;
+    font-weight: bold;
+}
+
+.to-buy-btn {
+    color: #dd0000;
+    // background-color: #dd0000;
+    font-weight: bold;
+    padding: 5px;
+    border: solid #dd0000;
+    border-radius: 5px;
+    &:hover {
+        opacity: 0.8;
+        transition-duration: 0.3s;
+    }
+}
+
+#poopup-parent {
+    position: relative;
+}
+
+#popup {
+    position: absolute;
+    display: none;
+    
 }
 
 // room.buy

@@ -6,10 +6,9 @@ class CostsController < ApplicationController
         if @entry_room.present?
             @price = Cost.new(cost_params)
             if @price.save
-                redirect_to  "/rooms/#{@price.room_id}/buy"
+                redirect_to "/rooms/#{@price.room_id}/buy"
             else
-                flash.now[:danger] = "入力値が正しくありません"
-                render :new
+                redirect_to "/rooms/#{@price.room_id}"
             end
         end
     end

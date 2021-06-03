@@ -23,6 +23,9 @@ ja:
             message:
                 content: 文字
                 images: 画像
+                
+            cost:
+                price: 金額
             
         errors:
             models:

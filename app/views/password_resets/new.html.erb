@@ -3,10 +3,14 @@
         <div class = "row">
             <div class = "col-md-offset-4 col-md-4">
                 <div class = "password-application">
+                    <h1 class = "password-reset-new-text">パスワードリセット</h1>
+                    <div class = "password-reset-new-form">
                     <%= form_with url: password_resets_path, local: true do |f| %>
-                        <%= f.label "メールアドレス" %><br>
-                        <%= f.email_field :email %>
-                        <%= f.submit "送信する" %>
+                        <h4><%= f.label "メールアドレス", class: 'password-reset-new-form-text' %></h4>
+                        <div class  = "password-reset-new-form-part">
+                            <%= f.email_field :email, class: 'password-reset-new-email-form' %>
+                            <%= f.submit "送信する", class: 'btn btn-primary password-reset-new-form-btn' %>
+                        </div>
                     <% end %>
                 </div>
             </div>

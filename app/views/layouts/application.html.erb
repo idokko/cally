@@ -38,6 +38,11 @@
         <ul class = "nav navbar-nav navbar-right">
           <% if logged_in? %>
             <li>
+              <% if current_user.admin == true %>
+                <%= link_to "管理者画面", admin_users_path, class: 'nav-text'%>
+              <% end %>
+            </li>
+            <li>
               <%= link_to user_path(current_user.id) do %>
                 <% if current_user.profile_image.present? %>
                   <%= image_tag current_user.profile_image.url %>
@@ -69,7 +74,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to logout_path, method: :post do %>
+              <%= link_to logout_path, method: :delete do %>
                 <%= image_tag "icons/ログアウト.png" %>
               <% end %>
             </li>

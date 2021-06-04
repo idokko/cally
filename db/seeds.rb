@@ -12,7 +12,7 @@ User.create(
     [
         {
             name: 'admin',
-            email: 'admin@co.jp',
+            email: 'cally.controller@gmail.com',
             password: password,
             password_confirmation: password,
             artist: 'yes',

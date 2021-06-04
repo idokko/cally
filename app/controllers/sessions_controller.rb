@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login, expect: [:destoroy]
+  skip_before_action :require_login, expect: [:destroy]
   
   def new
   end
@@ -18,6 +18,6 @@ class SessionsController < ApplicationController
   
   def destroy
     logout
-    redirect_to(root_path, notice: 'ログアウトしました')
+    redirect_to login_path, danger: 'ログアウトしました'
   end
 end

@@ -1,17 +1,18 @@
 <div class = "password-reset-new-wrapper">
     <div class = "container">
         <div class = "row">
-            <div class = "col-md-offset-4 col-md-4">
+            <div class = "col-md-offset-3 col-md-6">
                 <div class = "password-application">
-                    <h1 class = "password-reset-new-text">パスワードリセット</h1>
+                    <h1 class = "password-reset-new-text">パスワードリセット</h1><hr class = "hr-color" style = "margin-bottom: 35px;" >
                     <div class = "password-reset-new-form">
-                    <%= form_with url: password_resets_path, local: true do |f| %>
-                        <h4><%= f.label "メールアドレス", class: 'password-reset-new-form-text' %></h4>
-                        <div class  = "password-reset-new-form-part">
+                        <%= form_with url: password_resets_path, local: true do |f| %>
+                            <h4><%= f.label "メールアドレス", class: 'password-reset-new-form-text' %></h4>
                             <%= f.email_field :email, class: 'password-reset-new-email-form' %>
-                            <%= f.submit "送信する", class: 'btn btn-primary password-reset-new-form-btn' %>
-                        </div>
-                    <% end %>
+                            <div class  = "password-reset-new-form-part">
+                                <%= f.submit "送信する", class: 'btn btn-primary password-reset-new-form-btn' %>
+                            </div>
+                        <% end %>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,19 +1,25 @@
 <div class = "password-reset-edit-warapper">
     <div class = "container">
         <div class = "row">
-            <div class = "col-md-offset-4 col-md-4">
-                <div class = "password-form">
+            <div class = "col-md-offset-3 col-md-6">
+                <h1 class = "password-reset-edit-text">パスワードリセット</h1><hr class = "hr-color" style = "margin-bottom: 35px;" >
+                <div class = "password-reset-edit-form">
                     <%= form_with model: @user, url: password_reset_path(@token), local: true do |f| %>
-                        <%= f.label 'メールアドレス' %><br>
-                        <%= @user.email %>
-                        <p>
-                            <%= f.label '新しいパスワード' %>
-                            <%= f.password_field :password %>
-                            <%= f.label '新しいパスワード確認' %>
-                            <%= f.password_field :password_confirmation %>
-                        </p>
-                        
-                        <%= f.submit "更新する" %>
+                        <div class  = "password-reset-edit-form-part">
+                            <h4><%= f.label 'メールアドレス：', class: 'password-reset-edit-form-text' %></h4>
+                            <h4 class = "password-reset-edit-email-text"><%= @user.email %></h4>
+                        </div>
+                        <div class  = "password-reset-edit-form-part">
+                            <h4><%= f.label '新しいパスワード', class: 'password-reset-edit-form-text' %></h4>
+                            <%= f.password_field :password, class: 'password-reset-edit-form-new' %>
+                        </div>
+                        <div class  = "password-reset-edit-form-part">
+                            <h4><%= f.label '新しいパスワード確認', class: 'password-reset-edit-form-text' %></h4>
+                            <%= f.password_field :password_confirmation, class: 'password-reset-edit-form-confirm' %>
+                        </div>
+                        <div class  = "password-reset-edit-form-part">
+                            <%= f.submit "更新する", class: 'btn btn-primary password-reset-edit-form-btn' %>
+                        </div>
                     <% end %>
                 </div>
             </div>

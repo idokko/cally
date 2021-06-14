@@ -13,7 +13,7 @@
                         <div class = "price-contents">
                             <h3 class = "price-tag" >支払金額</h3>
                             <% if @price > 0 %>
-                                <h3 class = "price-details"><%= @price %>円</h3>
+                                <h3 class = "price-details"><%= @price.to_s(:delimited, delimited: ',') %>円</h3>
                             <% else %>
                                 <h3 class = "price-details">金額が入力されていません</h3>
                             <% end %>

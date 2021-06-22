@@ -85,9 +85,6 @@ class RoomsController < ApplicationController
                 currency: 'jpy'
             )
         end
-        if Pay::Charge.save
-            
-        end
     end
     
     private

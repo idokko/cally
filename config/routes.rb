@@ -33,7 +33,13 @@ Rails.application.routes.draw do
     resources :users, only: [:index]
   end
   
-  resources :cards, only: [:new, :create, :show, :destroy]
+  resources :cards, only: [:new, :show] do
+    collection do
+      post 'show', to: 'cards#show'
+      post 'pay', to: 'cards#pay'
+      post 'delete', to: 'cards#delete'
+    end
+  end
   resources :costs, only: %i[new create]
   
   if Rails.env.development?

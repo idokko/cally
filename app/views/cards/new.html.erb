@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class = "form-group">
-                    <%= form_with url: cards_path,method: :post, id: "card_form" do |f| %>
+                    <%= form_with url: pay_cards_path,method: :post, id: "card_form" do |f| %>
                     <div id = "card_token">
                         <%= f.submit "登録する", class: "btn btn-outline-secondary btn-black", id: "info-submit" %>
                     </div>

@@ -7,29 +7,29 @@ class CardsController < ApplicationController
       @card = Card.where(user_id: current_user.id)
     end
     
-    def create
-      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-      unless params['payjp_token'].blank?
-        #   生成したトークンから、顧客情報と紐付け、PAY.JP管理サイトに登録
-          customer = Payjp::Customer.create(
-            email: current_user.email,
-            card: params['payjp_token'],
-            metadata: {user_id: current_user.id}
-          )
-        #   トークン化した情報をアプリのcardsテーブルに登録
-          @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+    # def create
+    #   Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    #   unless params['payjp_token'].blank?
+    #     #   生成したトークンから、顧客情報と紐付け、PAY.JP管理サイトに登録
+    #       customer = Payjp::Customer.create(
+    #         email: current_user.email,
+    #         card: params['payjp_token'],
+    #         metadata: {user_id: current_user.id}
+    #       )
+    #     #   トークン化した情報をアプリのcardsテーブルに登録
+    #       @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
           
-          if @card.save
-            redirect_to user_path(current_user.id)
-          else
-            redirect_to action: "show"
-          end
-      else
-        # binding.pry
-          flash.now[:danger] = '登録出来ませんでした'
-          render :new
-      end
-    end
+    #       if @card.save
+    #         redirect_to user_path(current_user.id)
+    #       else
+    #         redirect_to action: "show"
+    #       end
+    #   else
+    #     # binding.pry
+    #       flash.now[:danger] = '登録出来ませんでした'
+    #       render :new
+    #   end
+    # end
         
     def show
       @card = Card.find_by(user_id: current_user.id)
@@ -81,7 +81,8 @@ class CardsController < ApplicationController
           redirect_to action: "new"
       else
           customer = Payjp::Customer.create(
-            card: params['payjp_token']
+            card: params['payjp_token'],
+            metadata: {user_id: current_user.id}
           )
           @card = Card.new(
             user_id: current_user.id,
